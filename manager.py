@@ -6,6 +6,7 @@ from matplotlib.figure import Figure
 
 import random
 import memory
+from css import MENU_CSS
 
 class Window(QtGui.QDialog):
 
@@ -28,36 +29,37 @@ class Window(QtGui.QDialog):
 
         #### Cria menu
         self.myQMenuBar = QtGui.QMenuBar(self)
-        menuMemoria = self.myQMenuBar.addMenu('Memória')
+        self.myQMenuBar.setStyleSheet(MENU_CSS)
+        self.menuMemoria = self.myQMenuBar.addMenu('Memória')
         ##plota grafico 1
         plot1 = QtGui.QAction('&Memória Total x Memória Livre', self)        
         plot1.triggered.connect(lambda: self.plot( memory.plotGraph1() ))
-        menuMemoria.addAction(plot1)
+        self.menuMemoria.addAction(plot1)
 
         ##plota grafico 2
         plot2 = QtGui.QAction('Memória Total x Memória Acessivel', self)        
         plot2.triggered.connect(lambda: self.plot( memory.plotGraph2() ))
-        menuMemoria.addAction(plot2)
+        self.menuMemoria.addAction(plot2)
         
         ##plota grafico 3
         plot3 = QtGui.QAction('Memória Total x Memória Cache', self)        
         plot3.triggered.connect(lambda: self.plot( memory.plotGraph3() ))
-        menuMemoria.addAction(plot3)
+        self.menuMemoria.addAction(plot3)
 
         ##plota grafico 4
         plot4 = QtGui.QAction('Swap Total x Memória Total', self)        
         plot4.triggered.connect(lambda: self.plot( memory.plotGraph4() ))
-        menuMemoria.addAction(plot4)
+        self.menuMemoria.addAction(plot4)
 
         ##plota grafico 5
         plot5 = QtGui.QAction('Swap Usado x Swap livre', self)        
         plot5.triggered.connect(lambda: self.plot( memory.plotGraph5() ))
-        menuMemoria.addAction(plot5)
+        self.menuMemoria.addAction(plot5)
 
         ##plota grafico 5
         plot6 = QtGui.QAction('Faltas de páginas por processos', self)        
         plot6.triggered.connect(lambda: self.listview( memory.pageFaults() ))
-        menuMemoria.addAction(plot6)
+        self.menuMemoria.addAction(plot6)
 
         # set the layout
         self.layout = QtGui.QVBoxLayout()
