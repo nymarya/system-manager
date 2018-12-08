@@ -25,6 +25,9 @@ class Window(QtGui.QDialog):
         self.table = None
         self.tableItem = None
 
+        self.buttons = []
+
+
         # a figure instance to plot on
         self.figure = Figure()
 
@@ -132,7 +135,7 @@ class Window(QtGui.QDialog):
 
         btnShowTree = QtGui.QPushButton("Exibir árvore de processos")
         self.layout.addWidget(btnShowTree)
-        
+
       
         if( self.table == None or self.layout.indexOf(self.table) == -1):
             self.table = QtGui.QTableWidget()
@@ -144,10 +147,13 @@ class Window(QtGui.QDialog):
         self.tableItem 	= QTableWidgetItem()
     
         # initiate table
-        self.table.setWindowTitle("QTableWidget Example @pythonspot.com")
+        self.table.setWindowTitle("Gerenciador de processos")
         self.table.setRowCount(len(data))
         self.table.setColumnCount(5)
         
+        
+
+
         for i,text in enumerate(data):
 
             txtSplit = " ".join(text.split()) 
@@ -163,16 +169,27 @@ class Window(QtGui.QDialog):
             self.table.setItem(i,1, QTableWidgetItem(pid))
             self.table.setItem(i,2, QTableWidgetItem(command))
             
-            button = QtGui.QPushButton("Kill")
-            self.table.setCellWidget(i,3, button)
-            button.clicked.connect(
-                lambda: managerProcesses.killProcess(i))
+            #buttonKill = QtGui.QPushButton("Kill")
+            self.buttons.append( QtGui.QPushButton("Kill") )
 
-            button = QtGui.QPushButton("Infos")
-            self.table.setCellWidget(i,4, button)
-            button.clicked.connect(
-                lambda: managerProcesses.killProcess(i))
+            self.table.setCellWidget(i,3, self.buttons[i])
+            self.buttons[i].clicked.connect(
+                lambda: managerProcesses.killProcess(pid))
 
+            
+            '''
+            buttonInfos = QtGui.QPushButton("Infos")
+            self.table.setCellWidget(i,4, buttonInfos)
+            buttonInfos.clicked.connect(
+                lambda: managerProcesses.killProcess(pid))
+            '''
+
+            #self.buttons.append( buttonKill )
+            #self.buttons.append( buttonInfos )
+
+    
+        self.table.cellClicked.connect(self.cellClick)
+        
 
 
         # show table
@@ -180,6 +197,9 @@ class Window(QtGui.QDialog):
         self.layout.removeWidget(self.canvas)
 
 
+    def cellClick(row,col):
+        #print("Click on " + row + " " + col)
+        print(row)
 
 
     def listview(self, data):
