@@ -78,6 +78,26 @@ class Window(QtGui.QDialog):
         signal = QtCore.SIGNAL("output(PyQt_PyObject)")
         self.connect(self.thread, signal, self.listview)
         
+    def formatPsResult(self, line):
+        """ Format each line result from the ps command
+
+        @param line Line from ps command
+        @return 
+        """
+        #separate the values
+        texts = line.split(' ')
+
+        ## format pid
+        texts[0] = texts[0].ljust(5)
+        ## format process name
+        texts[1] = texts[1].rjust(len(line) - 17)
+        ## format minor faults
+        texts[2] = texts[2].rjust(6)
+        ## format major faults
+        texts[3] = texts[3].rjust(6)
+
+        return ' '.join(texts).rjust(self.listWidget.width())
+
     def listview(self, data):
         '''show list with page faults'''
         
@@ -89,7 +109,8 @@ class Window(QtGui.QDialog):
         self.listWidget = QtGui.QListWidget()
         
         for text in data:
-            self.listWidget.addItem(text)
+            line = self.formatPsResult(text)
+            self.listWidget.addItem(line)
             
         self.layout.removeWidget(self.canvas)
         if( self.listWidget != None and self.layout.indexOf(self.listWidget) != -1):
