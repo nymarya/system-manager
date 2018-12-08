@@ -1,0 +1,313 @@
+USER       PID COMMAND                      MINFL
+root         1 /sbin/init splash            15760
+root         2 [kthreadd]                       0
+root         4 [kworker/0:0H]                   0
+root         6 [mm_percpu_wq]                   0
+root         7 [ksoftirqd/0]                    0
+root         8 [rcu_sched]                      0
+root         9 [rcu_bh]                         0
+root        10 [migration/0]                    0
+root        11 [watchdog/0]                     0
+root        12 [cpuhp/0]                        0
+root        13 [cpuhp/1]                        0
+root        14 [watchdog/1]                     0
+root        15 [migration/1]                    0
+root        16 [ksoftirqd/1]                    0
+root        18 [kworker/1:0H]                   0
+root        19 [cpuhp/2]                        0
+root        20 [watchdog/2]                     0
+root        21 [migration/2]                    0
+root        22 [ksoftirqd/2]                    0
+root        24 [kworker/2:0H]                   0
+root        25 [cpuhp/3]                        0
+root        26 [watchdog/3]                     0
+root        27 [migration/3]                    0
+root        28 [ksoftirqd/3]                    0
+root        30 [kworker/3:0H]                   0
+root        31 [kdevtmpfs]                      0
+root        32 [netns]                          0
+root        33 [kworker/0:1]                    0
+root        37 [khungtaskd]                     0
+root        38 [oom_reaper]                     0
+root        39 [writeback]                      0
+root        40 [kcompactd0]                     0
+root        41 [ksmd]                           0
+root        42 [khugepaged]                     0
+root        43 [crypto]                         0
+root        44 [kintegrityd]                    0
+root        45 [kblockd]                        0
+root        46 [ata_sff]                        0
+root        47 [md]                             0
+root        48 [edac-poller]                    0
+root        49 [devfreq_wq]                     0
+root        50 [watchdogd]                      0
+root        53 [kauditd]                        0
+root        54 [kswapd0]                        0
+root        55 [ecryptfs-kthrea]                0
+root        97 [kthrotld]                       0
+root        98 [acpi_thermal_pm]                0
+root       103 [ipv6_addrconf]                  0
+root       133 [charger_manager]                0
+root       179 [scsi_eh_0]                      0
+root       180 [scsi_tmf_0]                     0
+root       181 [scsi_eh_1]                      0
+root       182 [scsi_tmf_1]                     0
+root       184 [i915/signal:0]                  0
+root       185 [i915/signal:1]                  0
+root       186 [i915/signal:2]                  0
+root       187 [i915/signal:4]                  0
+root       191 [kworker/2:1H]                   0
+root       192 [kworker/0:1H]                   0
+root       215 [jbd2/sda4-8]                    0
+root       216 [ext4-rsv-conver]                0
+root       246 [kworker/3:1H]                   0
+root       248 [kworker/1:1H]                   0
+root       256 /lib/systemd/systemd-journa   1043
+root       268 /lib/systemd/systemd-udevd    4398
+root       290 [loop0]                          0
+root       293 [loop1]                          0
+root       300 [loop2]                          0
+root       301 [loop3]                          0
+root       302 [loop4]                          0
+root       303 [loop5]                          0
+root       322 [cfg80211]                       0
+root       324 [ath10k_wq]                      0
+root       325 [ath10k_aux_wq]                  0
+root       377 [kmemstick]                      0
+root       382 [rtsx_usb_ms_1]                  0
+root       704 /usr/sbin/cron -f              420
+syslog     706 /usr/sbin/rsyslogd -n          534
+avahi      707 avahi-daemon: running [jain    331
+root       709 /usr/sbin/thermald --no-dae    463
+root       710 /usr/lib/udisks2/udisksd      1121
+message+   715 /usr/bin/dbus-daemon --syst    766
+avahi      716 avahi-daemon: chroot helper     43
+root       738 /usr/lib/bluetooth/bluetoot    326
+root       739 /usr/sbin/irqbalance --fore    239
+root       740 /usr/sbin/acpid                141
+root       746 /usr/sbin/ModemManager         792
+root       747 /usr/lib/accountsservice/ac    903
+root       748 /usr/sbin/NetworkManager --   2909
+root       749 /lib/systemd/systemd-logind    458
+root       755 /usr/lib/snapd/snapd          8157
+root       775 /usr/lib/policykit-1/polkit   3936
+postgres   845 /usr/lib/postgresql/9.6/bin   6250
+root       871 php-fpm: master process (/e   6381
+systemd+   872 /lib/systemd/systemd-resolv    525
+root       891 /usr/sbin/gdm3                 999
+root       894 /usr/sbin/sshd -D             2433
+root       899 gdm-session-worker [pam/gdm    689
+mysql      900 /usr/sbin/mysqld             31367
+postgres   924 postgres: 9.6/main: checkpo    107
+postgres   925 postgres: 9.6/main: writer     109
+postgres   926 postgres: 9.6/main: wal wri    103
+postgres   927 postgres: 9.6/main: autovac    214
+postgres   928 postgres: 9.6/main: stats c    103
+root       947 /sbin/wpa_supplicant -u -s     459
+www-data   951 php-fpm: pool www               78
+www-data   952 php-fpm: pool www               78
+gdm       1023 /lib/systemd/systemd --user   1107
+root      1041 /usr/sbin/apache2 -k start   12818
+gdm       1043 (sd-pam)                        40
+gdm       1056 /usr/lib/gdm3/gdm-wayland-s    393
+gdm       1069 /usr/bin/dbus-daemon --sess    425
+gdm       1071 /usr/lib/gnome-session/gnom   3626
+gdm       1110 /usr/bin/gnome-shell         47912
+root      1115 /usr/lib/upower/upowerd        653
+gdm       1133 /usr/bin/Xwayland :1024 -ro   5843
+gdm       1159 /usr/lib/at-spi2-core/at-sp    693
+gdm       1164 /usr/bin/dbus-daemon --conf    295
+gdm       1166 /usr/lib/at-spi2-core/at-sp    373
+gdm       1170 /usr/bin/pulseaudio --daemo   1455
+rtkit     1171 /usr/lib/rtkit/rtkit-daemon    263
+whoopsie  1180 /usr/bin/whoopsie -f           951
+kernoops  1200 /usr/sbin/kerneloops            67
+gdm       1224 ibus-daemon --xim --panel d   1117
+gdm       1227 /usr/lib/ibus/ibus-dconf       527
+gdm       1230 /usr/lib/ibus/ibus-x11 --ki   2505
+root      1241 /usr/lib/packagekit/package  15522
+gdm       1242 /usr/lib/gnome-settings-dae   2752
+gdm       1244 /usr/lib/gnome-settings-dae   2755
+gdm       1245 /usr/lib/gnome-settings-dae   2549
+gdm       1246 /usr/lib/gnome-settings-dae    573
+gdm       1247 /usr/lib/gnome-settings-dae   2517
+gdm       1248 /usr/lib/gnome-settings-dae   2955
+gdm       1253 /usr/lib/gnome-settings-dae    940
+gdm       1255 /usr/lib/gnome-settings-dae    348
+gdm       1256 /usr/lib/gnome-settings-dae   2568
+gdm       1257 /usr/lib/gnome-settings-dae   2763
+gdm       1261 /usr/lib/gnome-settings-dae    324
+gdm       1262 /usr/lib/gnome-settings-dae   3300
+gdm       1265 /usr/lib/gnome-settings-dae    548
+gdm       1266 /usr/lib/gnome-settings-dae    322
+gdm       1269 /usr/lib/gnome-settings-dae    333
+gdm       1274 /usr/lib/gnome-settings-dae    616
+gdm       1278 /usr/lib/gnome-settings-dae    682
+gdm       1279 /usr/lib/gnome-settings-dae    708
+gdm       1293 /usr/lib/ibus/ibus-engine-s    561
+colord    1333 /usr/lib/colord/colord        2215
+root      1379 gdm-session-worker [pam/gdm   1305
+jainebu+  1384 /lib/systemd/systemd --user   2753
+jainebu+  1385 (sd-pam)                        40
+jainebu+  1392 /usr/bin/gnome-keyring-daem   1520
+jainebu+  1396 /usr/lib/gdm3/gdm-wayland-s    816
+jainebu+  1398 /usr/bin/dbus-daemon --sess   2376
+jainebu+  1400 /usr/lib/gnome-session/gnom   6642
+jainebu+  1455 /usr/lib/gvfs/gvfsd            971
+jainebu+  1460 /usr/lib/gvfs/gvfsd-fuse /r    597
+jainebu+  1483 /usr/bin/gnome-shell        272508
+jainebu+  1489 /usr/bin/Xwayland :0 -rootl 170499
+jainebu+  1496 /usr/lib/at-spi2-core/at-sp    679
+jainebu+  1501 /usr/bin/dbus-daemon --conf    322
+jainebu+  1503 /usr/lib/at-spi2-core/at-sp    371
+jainebu+  1509 /usr/bin/pulseaudio --start   4918
+root      1522 [krfcommd]                       0
+jainebu+  1525 /usr/lib/gnome-shell/gnome-   1190
+jainebu+  1526 ibus-daemon --xim --panel d   1748
+jainebu+  1530 /usr/lib/ibus/ibus-dconf       548
+jainebu+  1532 /usr/lib/ibus/ibus-x11 --ki   2448
+jainebu+  1545 /usr/lib/evolution/evolutio   2003
+jainebu+  1546 /usr/lib/gvfs/gvfs-udisks2-    858
+jainebu+  1554 /usr/lib/gvfs/gvfs-gphoto2-    435
+jainebu+  1558 /usr/lib/gvfs/gvfs-mtp-volu    379
+jainebu+  1561 /usr/lib/gnome-online-accou   2250
+jainebu+  1565 /usr/lib/gvfs/gvfs-goa-volu    373
+jainebu+  1577 /usr/lib/gnome-online-accou    677
+jainebu+  1582 /usr/lib/gvfs/gvfs-afc-volu    500
+jainebu+  1587 /usr/lib/gnome-settings-dae    575
+jainebu+  1588 /usr/lib/gnome-settings-dae   3974
+jainebu+  1590 /usr/lib/gnome-settings-dae    730
+jainebu+  1593 /usr/lib/gnome-settings-dae    378
+jainebu+  1596 /usr/lib/gnome-settings-dae    342
+jainebu+  1599 /usr/lib/gnome-settings-dae    855
+jainebu+  1602 /usr/lib/gnome-settings-dae   2643
+jainebu+  1604 /usr/lib/gnome-settings-dae   2646
+jainebu+  1605 /usr/lib/gnome-settings-dae    713
+jainebu+  1610 /usr/lib/gnome-settings-dae    697
+jainebu+  1619 /usr/lib/gnome-settings-dae    576
+jainebu+  1620 /usr/lib/gnome-settings-dae   2466
+jainebu+  1621 /usr/lib/gnome-settings-dae   2936
+jainebu+  1624 /usr/lib/gnome-settings-dae   2425
+jainebu+  1625 /usr/lib/gnome-settings-dae    727
+jainebu+  1626 /usr/lib/gnome-settings-dae   1148
+jainebu+  1630 /usr/lib/gnome-settings-dae   3501
+jainebu+  1631 /usr/lib/gnome-settings-dae   2477
+jainebu+  1656 /usr/lib/gnome-settings-dae    935
+jainebu+  1657 /usr/lib/evolution/evolutio   3361
+jainebu+  1671 /usr/lib/ibus/ibus-engine-s    592
+jainebu+  1718 /usr/bin/gnome-software --g  21319
+jainebu+  1725 kerneloops-applet              850
+jainebu+  1733 /usr/lib/evolution/evolutio   2380
+jainebu+  1734 nautilus-desktop             16886
+jainebu+  1736 /usr/lib/gnome-disk-utility    488
+jainebu+  1756 /usr/lib/dconf/dconf-servic    453
+jainebu+  1759 /usr/lib/evolution/evolutio   2262
+jainebu+  1774 /usr/lib/evolution/evolutio   1771
+jainebu+  1779 /usr/lib/gvfs/gvfsd-trash -    783
+root      1791 /usr/lib/fwupd/fwupd          1909
+jainebu+  1794 /usr/lib/evolution/evolutio   1462
+jainebu+  1840 /usr/lib/gvfs/gvfsd-metadat    605
+jainebu+  2393 update-notifier               3875
+jainebu+  2497 /usr/lib/x86_64-linux-gnu/d   2296
+jainebu+  3202 /usr/lib/x86_64-linux-gnu/g    303
+jainebu+  3987 /usr/lib/gvfs/gvfsd-network    637
+jainebu+  4079 /usr/lib/gvfs/gvfsd-dnssd -    510
+www-data  4591 /usr/sbin/apache2 -k start      83
+www-data  4592 /usr/sbin/apache2 -k start      83
+root      4593 /usr/sbin/cupsd -l             619
+www-data  4594 /usr/sbin/apache2 -k start      83
+www-data  4595 /usr/sbin/apache2 -k start      83
+root      4596 /usr/sbin/cups-browsed         711
+www-data  4597 /usr/sbin/apache2 -k start      83
+jainebu+  5849 /usr/lib/gnome-terminal/gno  13269
+jainebu+  5857 bash                          6973
+root      6210 [kworker/3:0]                    0
+root      6340 [kworker/1:1]                    0
+root      6415 [kworker/u8:11]                  0
+root      6436 [kworker/u8:32]                  0
+root      6447 [kworker/u8:43]                  0
+root      6932 [kworker/2:1]                    0
+root      7100 [kworker/3:2]                    0
+root      7132 [kworker/u8:0]                   0
+root      7284 [kworker/2:2]                    0
+root      7372 [kworker/1:0]                    0
+root      7403 [kworker/0:0]                    0
+root      7433 [kworker/3:1]                    0
+root      7650 [kworker/2:0]                    0
+root      7783 [kworker/1:2]                    0
+root      7784 [kworker/2:3]                    0
+root      7800 [kworker/2:4]                    0
+root      7802 [kworker/u8:1]                   0
+root      7803 [kworker/u8:2]                   0
+root      7822 [kworker/1:3]                    0
+root      7825 [kworker/1:4]                    0
+root      7840 [kworker/u8:3]                   0
+root      7841 [kworker/u8:4]                   0
+root      7842 [kworker/u8:5]                   0
+root      7843 [kworker/u8:6]                   0
+root      7844 [kworker/u8:7]                   0
+root      7845 [kworker/u8:8]                   0
+root      7846 [kworker/u8:9]                   0
+root      7847 [kworker/u8:10]                  0
+root      7848 [kworker/u8:12]                  0
+root      7849 [kworker/u8:13]                  0
+root      7850 [kworker/u8:14]                  0
+root      7851 [kworker/u8:15]                  0
+root      7852 [kworker/u8:16]                  0
+root      7853 [kworker/u8:17]                  0
+root      7854 [kworker/u8:18]                  0
+root      7855 [kworker/u8:19]                  0
+root      7856 [kworker/u8:20]                  0
+root      7857 [kworker/u8:21]                  0
+root      7858 [kworker/u8:22]                  0
+root      7859 [kworker/u8:23]                  0
+root      7860 [kworker/u8:24]                  0
+root      7861 [kworker/u8:25]                  0
+root      7862 [kworker/u8:26]                  0
+root      7863 [kworker/u8:27]                  0
+root      7864 [kworker/u8:28]                  0
+root      7865 [kworker/u8:29]                  0
+root      7866 [kworker/u8:30]                  0
+root      7867 [kworker/u8:31]                  0
+root      7868 [kworker/u8:33]                  0
+root      7869 [kworker/u8:34]                  0
+root      7870 [kworker/u8:35]                  0
+root      7871 [kworker/u8:36]                  0
+root      7872 [kworker/u8:37]                  0
+root      7873 [kworker/u8:38]                  0
+root      7874 [kworker/u8:39]                  0
+root      7875 [kworker/u8:40]                  0
+root      7876 [kworker/u8:41]                  0
+root      7877 [kworker/u8:42]                  0
+root      7878 [kworker/u8:44]                  0
+root      7879 [kworker/u8:45]                  0
+root      7880 [kworker/u8:46]                  0
+root      7881 [kworker/u8:47]                  0
+root      7882 [kworker/u8:48]                  0
+root      7883 [irq/128-mei_me]                 0
+root      7900 [kworker/u9:0]                   0
+root      7902 [kworker/u9:1]                   0
+root      7928 [kworker/u9:2]                   0
+jainebu+  8025 /opt/google/chrome/chrome   110795
+jainebu+  8031 cat                            114
+jainebu+  8032 cat                            119
+jainebu+  8035 /opt/google/chrome/chrome -   3984
+jainebu+  8036 /opt/google/chrome/nacl_hel    503
+jainebu+  8039 /opt/google/chrome/chrome -    235
+jainebu+  8083 /proc/self/exe --type=gpu-p  29087
+jainebu+  8180 /proc/self/exe --type=gpu-p    118
+root      8192 /sbin/dhclient -d -q -sf /u    436
+root      8534 [kworker/0:2]                    0
+jainebu+  8551 /usr/bin/gnome-calendar --g   3684
+jainebu+  8665 /snap/vscode/69/usr/share/c  54189
+jainebu+  8667 /snap/vscode/69/usr/share/c   3897
+jainebu+  8699 /snap/vscode/69/usr/share/c  24594
+jainebu+  8706 /snap/vscode/69/usr/share/c 111534
+jainebu+  8728 /snap/vscode/69/usr/share/c 103985
+jainebu+  8733 /snap/vscode/69/usr/share/c  16569
+jainebu+  8754 /snap/vscode/69/usr/share/c  15213
+jainebu+  8841 /opt/google/chrome/chrome - 209159
+jainebu+  8866 python completion.py          6799
+jainebu+  8869 /usr/bin/python jedi/evalua   5232
+jainebu+  8904 /opt/google/chrome/chrome -  21019
+jainebu+  8977 ps -eo user,pid,command,min    250

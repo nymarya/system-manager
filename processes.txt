@@ -1,0 +1,270 @@
+USER       PID COMMAND
+root         1 /sbin/init splash
+root         2 [kthreadd]
+root         4 [kworker/0:0H]
+root         6 [mm_percpu_wq]
+root         7 [ksoftirqd/0]
+root         8 [rcu_sched]
+root         9 [rcu_bh]
+root        10 [migration/0]
+root        11 [watchdog/0]
+root        12 [cpuhp/0]
+root        13 [cpuhp/1]
+root        14 [watchdog/1]
+root        15 [migration/1]
+root        16 [ksoftirqd/1]
+root        18 [kworker/1:0H]
+root        19 [cpuhp/2]
+root        20 [watchdog/2]
+root        21 [migration/2]
+root        22 [ksoftirqd/2]
+root        24 [kworker/2:0H]
+root        25 [cpuhp/3]
+root        26 [watchdog/3]
+root        27 [migration/3]
+root        28 [ksoftirqd/3]
+root        30 [kworker/3:0H]
+root        31 [kdevtmpfs]
+root        32 [netns]
+root        37 [khungtaskd]
+root        38 [oom_reaper]
+root        39 [writeback]
+root        40 [kcompactd0]
+root        41 [ksmd]
+root        42 [khugepaged]
+root        43 [crypto]
+root        44 [kintegrityd]
+root        45 [kblockd]
+root        46 [ata_sff]
+root        47 [md]
+root        48 [edac-poller]
+root        49 [devfreq_wq]
+root        50 [watchdogd]
+root        53 [kauditd]
+root        54 [kswapd0]
+root        55 [ecryptfs-kthrea]
+root        97 [kthrotld]
+root        98 [acpi_thermal_pm]
+root       103 [ipv6_addrconf]
+root       133 [charger_manager]
+root       179 [scsi_eh_0]
+root       180 [scsi_tmf_0]
+root       181 [scsi_eh_1]
+root       182 [scsi_tmf_1]
+root       184 [i915/signal:0]
+root       185 [i915/signal:1]
+root       186 [i915/signal:2]
+root       187 [i915/signal:4]
+root       191 [kworker/2:1H]
+root       192 [kworker/0:1H]
+root       215 [jbd2/sda4-8]
+root       216 [ext4-rsv-conver]
+root       246 [kworker/3:1H]
+root       248 [kworker/1:1H]
+root       256 /lib/systemd/systemd-journald
+root       268 /lib/systemd/systemd-udevd
+root       290 [loop0]
+root       293 [loop1]
+root       300 [loop2]
+root       301 [loop3]
+root       302 [loop4]
+root       303 [loop5]
+root       322 [cfg80211]
+root       324 [ath10k_wq]
+root       325 [ath10k_aux_wq]
+root       377 [kmemstick]
+root       382 [rtsx_usb_ms_1]
+root       704 /usr/sbin/cron -f
+syslog     706 /usr/sbin/rsyslogd -n
+avahi      707 avahi-daemon: running [jainebudke.local]
+root       709 /usr/sbin/thermald --no-daemon --dbus-enable
+root       710 /usr/lib/udisks2/udisksd
+message+   715 /usr/bin/dbus-daemon --system --address=systemd: --nofork --nopidfile --systemd-activation
+avahi      716 avahi-daemon: chroot helper
+root       738 /usr/lib/bluetooth/bluetoothd
+root       739 /usr/sbin/irqbalance --foreground
+root       740 /usr/sbin/acpid
+root       746 /usr/sbin/ModemManager
+root       747 /usr/lib/accountsservice/accounts-daemon
+root       748 /usr/sbin/NetworkManager --no-daemon
+root       749 /lib/systemd/systemd-logind
+root       755 /usr/lib/snapd/snapd
+root       775 /usr/lib/policykit-1/polkitd --no-debug
+postgres   845 /usr/lib/postgresql/9.6/bin/postgres -D /var/lib/postgresql/9.6/main -c config_file=/etc/postgresql/9.6/main/postgresql.conf
+root       871 php-fpm: master process (/etc/php/7.1/fpm/php-fpm.conf)
+systemd+   872 /lib/systemd/systemd-resolved
+root       891 /usr/sbin/gdm3
+root       894 /usr/sbin/sshd -D
+root       899 gdm-session-worker [pam/gdm-launch-environment]
+mysql      900 /usr/sbin/mysqld
+postgres   924 postgres: 9.6/main: checkpointer process   
+postgres   925 postgres: 9.6/main: writer process   
+postgres   926 postgres: 9.6/main: wal writer process   
+postgres   927 postgres: 9.6/main: autovacuum launcher process   
+postgres   928 postgres: 9.6/main: stats collector process   
+root       947 /sbin/wpa_supplicant -u -s -O /run/wpa_supplicant
+www-data   951 php-fpm: pool www
+www-data   952 php-fpm: pool www
+gdm       1023 /lib/systemd/systemd --user
+root      1041 /usr/sbin/apache2 -k start
+gdm       1043 (sd-pam)
+gdm       1056 /usr/lib/gdm3/gdm-wayland-session gnome-session --autostart /usr/share/gdm/greeter/autostart
+gdm       1069 /usr/bin/dbus-daemon --session --address=systemd: --nofork --nopidfile --systemd-activation
+gdm       1071 /usr/lib/gnome-session/gnome-session-binary --autostart /usr/share/gdm/greeter/autostart
+gdm       1110 /usr/bin/gnome-shell
+root      1115 /usr/lib/upower/upowerd
+gdm       1133 /usr/bin/Xwayland :1024 -rootless -terminate -core -listen 4 -listen 5 -displayfd 6
+gdm       1159 /usr/lib/at-spi2-core/at-spi-bus-launcher
+gdm       1164 /usr/bin/dbus-daemon --config-file=/usr/share/defaults/at-spi2/accessibility.conf --nofork --print-address 3
+gdm       1166 /usr/lib/at-spi2-core/at-spi2-registryd --use-gnome-session
+gdm       1170 /usr/bin/pulseaudio --daemonize=no
+rtkit     1171 /usr/lib/rtkit/rtkit-daemon
+whoopsie  1180 /usr/bin/whoopsie -f
+kernoops  1200 /usr/sbin/kerneloops
+gdm       1224 ibus-daemon --xim --panel disable
+gdm       1227 /usr/lib/ibus/ibus-dconf
+gdm       1230 /usr/lib/ibus/ibus-x11 --kill-daemon
+root      1241 /usr/lib/packagekit/packagekitd
+gdm       1242 /usr/lib/gnome-settings-daemon/gsd-wacom
+gdm       1244 /usr/lib/gnome-settings-daemon/gsd-xsettings
+gdm       1245 /usr/lib/gnome-settings-daemon/gsd-a11y-keyboard
+gdm       1246 /usr/lib/gnome-settings-daemon/gsd-a11y-settings
+gdm       1247 /usr/lib/gnome-settings-daemon/gsd-clipboard
+gdm       1248 /usr/lib/gnome-settings-daemon/gsd-color
+gdm       1253 /usr/lib/gnome-settings-daemon/gsd-datetime
+gdm       1255 /usr/lib/gnome-settings-daemon/gsd-housekeeping
+gdm       1256 /usr/lib/gnome-settings-daemon/gsd-keyboard
+gdm       1257 /usr/lib/gnome-settings-daemon/gsd-media-keys
+gdm       1261 /usr/lib/gnome-settings-daemon/gsd-mouse
+gdm       1262 /usr/lib/gnome-settings-daemon/gsd-power
+gdm       1265 /usr/lib/gnome-settings-daemon/gsd-print-notifications
+gdm       1266 /usr/lib/gnome-settings-daemon/gsd-rfkill
+gdm       1269 /usr/lib/gnome-settings-daemon/gsd-screensaver-proxy
+gdm       1274 /usr/lib/gnome-settings-daemon/gsd-sharing
+gdm       1278 /usr/lib/gnome-settings-daemon/gsd-smartcard
+gdm       1279 /usr/lib/gnome-settings-daemon/gsd-sound
+gdm       1293 /usr/lib/ibus/ibus-engine-simple
+colord    1333 /usr/lib/colord/colord
+root      1379 gdm-session-worker [pam/gdm-password]
+jainebu+  1384 /lib/systemd/systemd --user
+jainebu+  1385 (sd-pam)
+jainebu+  1392 /usr/bin/gnome-keyring-daemon --daemonize --login
+jainebu+  1396 /usr/lib/gdm3/gdm-wayland-session env GNOME_SHELL_SESSION_MODE=ubuntu gnome-session --session=ubuntu
+jainebu+  1398 /usr/bin/dbus-daemon --session --address=systemd: --nofork --nopidfile --systemd-activation
+jainebu+  1400 /usr/lib/gnome-session/gnome-session-binary --session=ubuntu
+jainebu+  1455 /usr/lib/gvfs/gvfsd
+jainebu+  1460 /usr/lib/gvfs/gvfsd-fuse /run/user/1000/gvfs -f -o big_writes
+jainebu+  1483 /usr/bin/gnome-shell
+jainebu+  1489 /usr/bin/Xwayland :0 -rootless -terminate -core -listen 4 -listen 5 -displayfd 6
+jainebu+  1496 /usr/lib/at-spi2-core/at-spi-bus-launcher
+jainebu+  1501 /usr/bin/dbus-daemon --config-file=/usr/share/defaults/at-spi2/accessibility.conf --nofork --print-address 3
+jainebu+  1503 /usr/lib/at-spi2-core/at-spi2-registryd --use-gnome-session
+jainebu+  1509 /usr/bin/pulseaudio --start --log-target=syslog
+root      1522 [krfcommd]
+jainebu+  1525 /usr/lib/gnome-shell/gnome-shell-calendar-server
+jainebu+  1526 ibus-daemon --xim --panel disable
+jainebu+  1530 /usr/lib/ibus/ibus-dconf
+jainebu+  1532 /usr/lib/ibus/ibus-x11 --kill-daemon
+jainebu+  1545 /usr/lib/evolution/evolution-source-registry
+jainebu+  1546 /usr/lib/gvfs/gvfs-udisks2-volume-monitor
+jainebu+  1554 /usr/lib/gvfs/gvfs-gphoto2-volume-monitor
+jainebu+  1558 /usr/lib/gvfs/gvfs-mtp-volume-monitor
+jainebu+  1561 /usr/lib/gnome-online-accounts/goa-daemon
+jainebu+  1565 /usr/lib/gvfs/gvfs-goa-volume-monitor
+jainebu+  1577 /usr/lib/gnome-online-accounts/goa-identity-service
+jainebu+  1582 /usr/lib/gvfs/gvfs-afc-volume-monitor
+jainebu+  1587 /usr/lib/gnome-settings-daemon/gsd-mouse
+jainebu+  1588 /usr/lib/gnome-settings-daemon/gsd-power
+jainebu+  1590 /usr/lib/gnome-settings-daemon/gsd-print-notifications
+jainebu+  1593 /usr/lib/gnome-settings-daemon/gsd-rfkill
+jainebu+  1596 /usr/lib/gnome-settings-daemon/gsd-screensaver-proxy
+jainebu+  1599 /usr/lib/gnome-settings-daemon/gsd-sharing
+jainebu+  1602 /usr/lib/gnome-settings-daemon/gsd-wacom
+jainebu+  1604 /usr/lib/gnome-settings-daemon/gsd-xsettings
+jainebu+  1605 /usr/lib/gnome-settings-daemon/gsd-sound
+jainebu+  1610 /usr/lib/gnome-settings-daemon/gsd-smartcard
+jainebu+  1619 /usr/lib/gnome-settings-daemon/gsd-a11y-settings
+jainebu+  1620 /usr/lib/gnome-settings-daemon/gsd-a11y-keyboard
+jainebu+  1621 /usr/lib/gnome-settings-daemon/gsd-color
+jainebu+  1624 /usr/lib/gnome-settings-daemon/gsd-clipboard
+jainebu+  1625 /usr/lib/gnome-settings-daemon/gsd-housekeeping
+jainebu+  1626 /usr/lib/gnome-settings-daemon/gsd-datetime
+jainebu+  1630 /usr/lib/gnome-settings-daemon/gsd-media-keys
+jainebu+  1631 /usr/lib/gnome-settings-daemon/gsd-keyboard
+jainebu+  1656 /usr/lib/gnome-settings-daemon/gsd-printer
+jainebu+  1657 /usr/lib/evolution/evolution-calendar-factory
+jainebu+  1671 /usr/lib/ibus/ibus-engine-simple
+jainebu+  1718 /usr/bin/gnome-software --gapplication-service
+jainebu+  1725 kerneloops-applet
+jainebu+  1733 /usr/lib/evolution/evolution-calendar-factory-subprocess --factory contacts --bus-name org.gnome.evolution.dataserver.Subprocess.Backend.Calendarx1657x2 --own-path /org/gnome/evolution/dataserver/Subprocess/Backend/Calendar/1657/2
+jainebu+  1734 nautilus-desktop
+jainebu+  1736 /usr/lib/gnome-disk-utility/gsd-disk-utility-notify
+jainebu+  1756 /usr/lib/dconf/dconf-service
+jainebu+  1759 /usr/lib/evolution/evolution-calendar-factory-subprocess --factory local --bus-name org.gnome.evolution.dataserver.Subprocess.Backend.Calendarx1657x3 --own-path /org/gnome/evolution/dataserver/Subprocess/Backend/Calendar/1657/3
+jainebu+  1774 /usr/lib/evolution/evolution-addressbook-factory
+jainebu+  1779 /usr/lib/gvfs/gvfsd-trash --spawner :1.3 /org/gtk/gvfs/exec_spaw/0
+root      1791 /usr/lib/fwupd/fwupd
+jainebu+  1794 /usr/lib/evolution/evolution-addressbook-factory-subprocess --factory local --bus-name org.gnome.evolution.dataserver.Subprocess.Backend.AddressBookx1774x2 --own-path /org/gnome/evolution/dataserver/Subprocess/Backend/AddressBook/1774/2
+jainebu+  1840 /usr/lib/gvfs/gvfsd-metadata
+jainebu+  2393 update-notifier
+jainebu+  2497 /usr/lib/x86_64-linux-gnu/deja-dup/deja-dup-monitor
+jainebu+  3202 /usr/lib/x86_64-linux-gnu/gconf/gconfd-2
+jainebu+  3987 /usr/lib/gvfs/gvfsd-network --spawner :1.3 /org/gtk/gvfs/exec_spaw/1
+jainebu+  4079 /usr/lib/gvfs/gvfsd-dnssd --spawner :1.3 /org/gtk/gvfs/exec_spaw/3
+www-data  4591 /usr/sbin/apache2 -k start
+www-data  4592 /usr/sbin/apache2 -k start
+root      4593 /usr/sbin/cupsd -l
+www-data  4594 /usr/sbin/apache2 -k start
+www-data  4595 /usr/sbin/apache2 -k start
+root      4596 /usr/sbin/cups-browsed
+www-data  4597 /usr/sbin/apache2 -k start
+jainebu+  5849 /usr/lib/gnome-terminal/gnome-terminal-server
+jainebu+  5857 bash
+root      7883 [irq/128-mei_me]
+root      7900 [kworker/u9:0]
+root      7902 [kworker/u9:1]
+jainebu+  8025 /opt/google/chrome/chrome
+jainebu+  8031 cat
+jainebu+  8032 cat
+jainebu+  8035 /opt/google/chrome/chrome --type=zygote
+jainebu+  8036 /opt/google/chrome/nacl_helper
+jainebu+  8039 /opt/google/chrome/chrome --type=zygote
+jainebu+  8083 /proc/self/exe --type=gpu-process --field-trial-handle=17568343383793744759,17178590867363930970,131072 --gpu-preferences=GAAAAAAAAAAAAQAAAQAAAAAAAAAAAGAA --gpu-vendor-id=0x8086 --gpu-device-id=0x1921 --gpu-driver-vendor=Mesa --gpu-driver-version=17.2.8 --gpu-driver-date --service-request-channel-token=0A36AF31956744217857014254637DBB
+jainebu+  8180 /proc/self/exe --type=gpu-process --field-trial-handle=17568343383793744759,17178590867363930970,131072 --gpu-preferences=GAAAAAAAAAAAAQAAAQAAAAAAAAAAAGAA --gpu-vendor-id=0x8086 --gpu-device-id=0x1921 --gpu-driver-vendor=Mesa --gpu-driver-version=17.2.8 --gpu-driver-date --service-request-channel-token=0A36AF31956744217857014254637DBB
+root      8192 /sbin/dhclient -d -q -sf /usr/lib/NetworkManager/nm-dhcp-helper -pf /run/dhclient-wlp2s0.pid -lf /var/lib/NetworkManager/dhclient-f550bb3e-74a5-4c28-a9bb-23daa584a501-wlp2s0.lease -cf /var/lib/NetworkManager/dhclient-wlp2s0.conf wlp2s0
+jainebu+  8665 /snap/vscode/69/usr/share/code/code
+jainebu+  8667 /snap/vscode/69/usr/share/code/code --type=zygote --no-sandbox
+jainebu+  8699 /snap/vscode/69/usr/share/code/code --type=gpu-process --disable-features=ColorCorrectRendering --no-sandbox --supports-dual-gpus=false --gpu-driver-bug-workarounds=1,9,27,70,84 --disable-gl-extensions=GL_KHR_blend_equation_advanced GL_KHR_blend_equation_advanced_coherent --disable-accelerated-video-decode --gpu-vendor-id=0x8086 --gpu-device-id=0x1921 --gpu-driver-vendor --gpu-driver-version --gpu-driver-date --service-request-channel-token=1E7F56B0C634ECF35CB4E72C5941D372
+jainebu+  8706 /snap/vscode/69/usr/share/code/code --type=renderer --js-flags=--nolazy --disable-mojo-local-storage --no-sandbox --disable-features=ColorCorrectRendering --service-pipe-token=5AF2234A92028915AFC8B30AA91993B3 --lang=pt-BR --app-path=/snap/vscode/69/usr/share/code/resources/app --node-integration=true --webview-tag=true --no-sandbox --background-color=#1e1e1e --context-id=2 --enable-pinch --num-raster-threads=2 --enable-main-frame-before-activation --content-image-texture-target=0,0,3553;0,1,3553;0,2,3553;0,3,3553;0,4,3553;0,5,3553;0,6,3553;0,7,3553;0,8,3553;0,9,3553;0,10,3553;0,11,3553;0,12,3553;0,13,3553;0,14,3553;0,15,3553;0,16,3553;0,17,3553;1,0,3553;1,1,3553;1,2,3553;1,3,3553;1,4,3553;1,5,3553;1,6,3553;1,7,3553;1,8,3553;1,9,3553;1,10,3553;1,11,3553;1,12,3553;1,13,3553;1,14,3553;1,15,3553;1,16,3553;1,17,3553;2,0,3553;2,1,3553;2,2,3553;2,3,3553;2,4,3553;2,5,3553;2,6,3553;2,7,3553;2,8,3553;2,9,3553;2,10,3553;2,11,3553;2,12,3553;2,13,3553;2,14,3553;2,15,3553;2,16,3553;2,17,3553;3,0,3553;3,1,3553;3,2,3553;3,3,3553;3,4,3553;3,5,3553;3,6,3553;3,7,3553;3,8,3553;3,9,3553;3,10,3553;3,11,3553;3,12,3553;3,13,3553;3,14,3553;3,15,3553;3,16,3553;3,17,3553;4,0,3553;4,1,3553;4,2,3553;4,3,3553;4,4,3553;4,5,3553;4,6,3553;4,7,3553;4,8,3553;4,9,3553;4,10,3553;4,11,3553;4,12,3553;4,13,3553;4,14,3553;4,15,3553;4,16,3553;4,17,3553 --disable-accelerated-video-decode --enable-gpu-async-worker-context --service-request-channel-token=5AF2234A92028915AFC8B30AA91993B3 --renderer-client-id=4 --shared-files=v8_natives_data:100,v8_snapshot_data:101
+jainebu+  8728 /snap/vscode/69/usr/share/code/code /snap/vscode/69/usr/share/code/resources/app/out/bootstrap-fork --type=extensionHost
+jainebu+  8733 /snap/vscode/69/usr/share/code/code --type=renderer --js-flags=--nolazy --disable-mojo-local-storage --no-sandbox --disable-features=ColorCorrectRendering --service-pipe-token=D7891F3FDAD5CB7A281791DFC0825579 --lang=pt-BR --app-path=/snap/vscode/69/usr/share/code/resources/app --node-integration=true --webview-tag=true --no-sandbox --background-color=#1e1e1e --disable-blink-features=Auxclick --context-id=2 --enable-pinch --num-raster-threads=2 --enable-main-frame-before-activation --content-image-texture-target=0,0,3553;0,1,3553;0,2,3553;0,3,3553;0,4,3553;0,5,3553;0,6,3553;0,7,3553;0,8,3553;0,9,3553;0,10,3553;0,11,3553;0,12,3553;0,13,3553;0,14,3553;0,15,3553;0,16,3553;0,17,3553;1,0,3553;1,1,3553;1,2,3553;1,3,3553;1,4,3553;1,5,3553;1,6,3553;1,7,3553;1,8,3553;1,9,3553;1,10,3553;1,11,3553;1,12,3553;1,13,3553;1,14,3553;1,15,3553;1,16,3553;1,17,3553;2,0,3553;2,1,3553;2,2,3553;2,3,3553;2,4,3553;2,5,3553;2,6,3553;2,7,3553;2,8,3553;2,9,3553;2,10,3553;2,11,3553;2,12,3553;2,13,3553;2,14,3553;2,15,3553;2,16,3553;2,17,3553;3,0,3553;3,1,3553;3,2,3553;3,3,3553;3,4,3553;3,5,3553;3,6,3553;3,7,3553;3,8,3553;3,9,3553;3,10,3553;3,11,3553;3,12,3553;3,13,3553;3,14,3553;3,15,3553;3,16,3553;3,17,3553;4,0,3553;4,1,3553;4,2,3553;4,3,3553;4,4,3553;4,5,3553;4,6,3553;4,7,3553;4,8,3553;4,9,3553;4,10,3553;4,11,3553;4,12,3553;4,13,3553;4,14,3553;4,15,3553;4,16,3553;4,17,3553 --disable-accelerated-video-decode --enable-gpu-async-worker-context --service-request-channel-token=D7891F3FDAD5CB7A281791DFC0825579 --renderer-client-id=6 --shared-files=v8_natives_data:100,v8_snapshot_data:101
+jainebu+  8754 /snap/vscode/69/usr/share/code/code /snap/vscode/69/usr/share/code/resources/app/out/bootstrap-fork --type=watcherService
+jainebu+  8841 /opt/google/chrome/chrome --type=renderer --field-trial-handle=17568343383793744759,17178590867363930970,131072 --service-pipe-token=F8C9AFDEF072161512024D3878E0C23B --lang=pt-BR --enable-offline-auto-reload --enable-offline-auto-reload-visible-only --enable-pinch --num-raster-threads=2 --enable-main-frame-before-activation --enable-compositor-image-animations --enable-gpu-async-worker-context --content-image-texture-target=0,0,3553;0,1,3553;0,2,3553;0,3,3553;0,4,3553;0,5,3553;0,6,3553;0,7,3553;0,8,3553;0,9,3553;0,10,3553;0,11,3553;0,12,3553;0,13,3553;0,14,3553;0,15,3553;0,16,3553;0,17,3553;0,18,3553;1,0,3553;1,1,3553;1,2,3553;1,3,3553;1,4,3553;1,5,3553;1,6,3553;1,7,3553;1,8,3553;1,9,3553;1,10,3553;1,11,3553;1,12,3553;1,13,3553;1,14,3553;1,15,3553;1,16,3553;1,17,3553;1,18,3553;2,0,3553;2,1,3553;2,2,3553;2,3,3553;2,4,3553;2,5,3553;2,6,3553;2,7,3553;2,8,3553;2,9,3553;2,10,3553;2,11,3553;2,12,3553;2,13,3553;2,14,3553;2,15,3553;2,16,3553;2,17,3553;2,18,3553;3,0,3553;3,1,3553;3,2,3553;3,3,3553;3,4,3553;3,5,3553;3,6,3553;3,7,3553;3,8,3553;3,9,3553;3,10,3553;3,11,3553;3,12,3553;3,13,3553;3,14,3553;3,15,3553;3,16,3553;3,17,3553;3,18,3553;4,0,3553;4,1,3553;4,2,3553;4,3,3553;4,4,3553;4,5,3553;4,6,3553;4,7,3553;4,8,3553;4,9,3553;4,10,3553;4,11,3553;4,12,3553;4,13,3553;4,14,3553;4,15,3553;4,16,3553;4,17,3553;4,18,3553;5,0,3553;5,1,3553;5,2,3553;5,3,3553;5,4,3553;5,5,3553;5,6,3553;5,7,3553;5,8,3553;5,9,3553;5,10,3553;5,11,3553;5,12,3553;5,13,3553;5,14,3553;5,15,3553;5,16,3553;5,17,3553;5,18,3553;6,0,3553;6,1,3553;6,2,3553;6,3,3553;6,4,3553;6,5,3553;6,6,3553;6,7,3553;6,8,3553;6,9,3553;6,10,3553;6,11,3553;6,12,3553;6,13,3553;6,14,3553;6,15,3553;6,16,3553;6,17,3553;6,18,3553 --disable-accelerated-video-decode --service-request-channel-token=F8C9AFDEF072161512024D3878E0C23B --renderer
+jainebu+  8866 python completion.py
+jainebu+  8869 /usr/bin/python jedi/evaluate/compiled/subprocess/__main__.py  2.7.14
+jainebu+  9490 /opt/google/chrome/chrome --type=renderer --field-trial-handle=17568343383793744759,17178590867363930970,131072 --service-pipe-token=F59EC81DD9F5D33C634B2A6F9934C3CD --lang=pt-BR --enable-offline-auto-reload --enable-offline-auto-reload-visible-only --enable-pinch --num-raster-threads=2 --enable-main-frame-before-activation --enable-compositor-image-animations --enable-gpu-async-worker-context --content-image-texture-target=0,0,3553;0,1,3553;0,2,3553;0,3,3553;0,4,3553;0,5,3553;0,6,3553;0,7,3553;0,8,3553;0,9,3553;0,10,3553;0,11,3553;0,12,3553;0,13,3553;0,14,3553;0,15,3553;0,16,3553;0,17,3553;0,18,3553;1,0,3553;1,1,3553;1,2,3553;1,3,3553;1,4,3553;1,5,3553;1,6,3553;1,7,3553;1,8,3553;1,9,3553;1,10,3553;1,11,3553;1,12,3553;1,13,3553;1,14,3553;1,15,3553;1,16,3553;1,17,3553;1,18,3553;2,0,3553;2,1,3553;2,2,3553;2,3,3553;2,4,3553;2,5,3553;2,6,3553;2,7,3553;2,8,3553;2,9,3553;2,10,3553;2,11,3553;2,12,3553;2,13,3553;2,14,3553;2,15,3553;2,16,3553;2,17,3553;2,18,3553;3,0,3553;3,1,3553;3,2,3553;3,3,3553;3,4,3553;3,5,3553;3,6,3553;3,7,3553;3,8,3553;3,9,3553;3,10,3553;3,11,3553;3,12,3553;3,13,3553;3,14,3553;3,15,3553;3,16,3553;3,17,3553;3,18,3553;4,0,3553;4,1,3553;4,2,3553;4,3,3553;4,4,3553;4,5,3553;4,6,3553;4,7,3553;4,8,3553;4,9,3553;4,10,3553;4,11,3553;4,12,3553;4,13,3553;4,14,3553;4,15,3553;4,16,3553;4,17,3553;4,18,3553;5,0,3553;5,1,3553;5,2,3553;5,3,3553;5,4,3553;5,5,3553;5,6,3553;5,7,3553;5,8,3553;5,9,3553;5,10,3553;5,11,3553;5,12,3553;5,13,3553;5,14,3553;5,15,3553;5,16,3553;5,17,3553;5,18,3553;6,0,3553;6,1,3553;6,2,3553;6,3,3553;6,4,3553;6,5,3553;6,6,3553;6,7,3553;6,8,3553;6,9,3553;6,10,3553;6,11,3553;6,12,3553;6,13,3553;6,14,3553;6,15,3553;6,16,3553;6,17,3553;6,18,3553 --disable-accelerated-video-decode --service-request-channel-token=F59EC81DD9F5D33C634B2A6F9934C3CD --renderer
+jainebu+ 10704 bash
+root     11073 [kworker/0:2]
+jainebu+ 11090 /usr/bin/nautilus --gapplication-service
+jainebu+ 11133 /opt/google/chrome/chrome --type=renderer --field-trial-handle=17568343383793744759,17178590867363930970,131072 --service-pipe-token=3624330F4584B2F383D3EA0C8B3A9C09 --lang=pt-BR --enable-offline-auto-reload --enable-offline-auto-reload-visible-only --enable-pinch --num-raster-threads=2 --enable-main-frame-before-activation --enable-compositor-image-animations --enable-gpu-async-worker-context --content-image-texture-target=0,0,3553;0,1,3553;0,2,3553;0,3,3553;0,4,3553;0,5,3553;0,6,3553;0,7,3553;0,8,3553;0,9,3553;0,10,3553;0,11,3553;0,12,3553;0,13,3553;0,14,3553;0,15,3553;0,16,3553;0,17,3553;0,18,3553;1,0,3553;1,1,3553;1,2,3553;1,3,3553;1,4,3553;1,5,3553;1,6,3553;1,7,3553;1,8,3553;1,9,3553;1,10,3553;1,11,3553;1,12,3553;1,13,3553;1,14,3553;1,15,3553;1,16,3553;1,17,3553;1,18,3553;2,0,3553;2,1,3553;2,2,3553;2,3,3553;2,4,3553;2,5,3553;2,6,3553;2,7,3553;2,8,3553;2,9,3553;2,10,3553;2,11,3553;2,12,3553;2,13,3553;2,14,3553;2,15,3553;2,16,3553;2,17,3553;2,18,3553;3,0,3553;3,1,3553;3,2,3553;3,3,3553;3,4,3553;3,5,3553;3,6,3553;3,7,3553;3,8,3553;3,9,3553;3,10,3553;3,11,3553;3,12,3553;3,13,3553;3,14,3553;3,15,3553;3,16,3553;3,17,3553;3,18,3553;4,0,3553;4,1,3553;4,2,3553;4,3,3553;4,4,3553;4,5,3553;4,6,3553;4,7,3553;4,8,3553;4,9,3553;4,10,3553;4,11,3553;4,12,3553;4,13,3553;4,14,3553;4,15,3553;4,16,3553;4,17,3553;4,18,3553;5,0,3553;5,1,3553;5,2,3553;5,3,3553;5,4,3553;5,5,3553;5,6,3553;5,7,3553;5,8,3553;5,9,3553;5,10,3553;5,11,3553;5,12,3553;5,13,3553;5,14,3553;5,15,3553;5,16,3553;5,17,3553;5,18,3553;6,0,3553;6,1,3553;6,2,3553;6,3,3553;6,4,3553;6,5,3553;6,6,3553;6,7,3553;6,8,3553;6,9,3553;6,10,3553;6,11,3553;6,12,3553;6,13,3553;6,14,3553;6,15,3553;6,16,3553;6,17,3553;6,18,3553 --disable-accelerated-video-decode --service-request-channel-token=3624330F4584B2F383D3EA0C8B3A9C09 --renderer
+root     12108 [kworker/u8:2]
+root     12827 [kworker/u8:0]
+root     12846 [kworker/1:0]
+root     12863 [kworker/2:0]
+root     12869 [kworker/u8:1]
+root     13358 [kworker/3:0]
+jainebu+ 13399 python3
+root     13425 [kworker/0:0]
+root     13426 [kworker/2:1]
+root     13520 [kworker/3:2]
+jainebu+ 13537 /opt/google/chrome/chrome --type=renderer --field-trial-handle=17568343383793744759,17178590867363930970,131072 --service-pipe-token=8BA53B6FB1A258CEEDAE7CD22C277122 --lang=pt-BR --enable-offline-auto-reload --enable-offline-auto-reload-visible-only --enable-pinch --num-raster-threads=2 --enable-main-frame-before-activation --enable-compositor-image-animations --enable-gpu-async-worker-context --content-image-texture-target=0,0,3553;0,1,3553;0,2,3553;0,3,3553;0,4,3553;0,5,3553;0,6,3553;0,7,3553;0,8,3553;0,9,3553;0,10,3553;0,11,3553;0,12,3553;0,13,3553;0,14,3553;0,15,3553;0,16,3553;0,17,3553;0,18,3553;1,0,3553;1,1,3553;1,2,3553;1,3,3553;1,4,3553;1,5,3553;1,6,3553;1,7,3553;1,8,3553;1,9,3553;1,10,3553;1,11,3553;1,12,3553;1,13,3553;1,14,3553;1,15,3553;1,16,3553;1,17,3553;1,18,3553;2,0,3553;2,1,3553;2,2,3553;2,3,3553;2,4,3553;2,5,3553;2,6,3553;2,7,3553;2,8,3553;2,9,3553;2,10,3553;2,11,3553;2,12,3553;2,13,3553;2,14,3553;2,15,3553;2,16,3553;2,17,3553;2,18,3553;3,0,3553;3,1,3553;3,2,3553;3,3,3553;3,4,3553;3,5,3553;3,6,3553;3,7,3553;3,8,3553;3,9,3553;3,10,3553;3,11,3553;3,12,3553;3,13,3553;3,14,3553;3,15,3553;3,16,3553;3,17,3553;3,18,3553;4,0,3553;4,1,3553;4,2,3553;4,3,3553;4,4,3553;4,5,3553;4,6,3553;4,7,3553;4,8,3553;4,9,3553;4,10,3553;4,11,3553;4,12,3553;4,13,3553;4,14,3553;4,15,3553;4,16,3553;4,17,3553;4,18,3553;5,0,3553;5,1,3553;5,2,3553;5,3,3553;5,4,3553;5,5,3553;5,6,3553;5,7,3553;5,8,3553;5,9,3553;5,10,3553;5,11,3553;5,12,3553;5,13,3553;5,14,3553;5,15,3553;5,16,3553;5,17,3553;5,18,3553;6,0,3553;6,1,3553;6,2,3553;6,3,3553;6,4,3553;6,5,3553;6,6,3553;6,7,3553;6,8,3553;6,9,3553;6,10,3553;6,11,3553;6,12,3553;6,13,3553;6,14,3553;6,15,3553;6,16,3553;6,17,3553;6,18,3553 --disable-accelerated-video-decode --service-request-channel-token=8BA53B6FB1A258CEEDAE7CD22C277122 --renderer
+root     13561 [kworker/3:3]
+root     13562 [kworker/1:1]
+root     13610 [kworker/0:1]
+root     13616 [kworker/2:2]
+root     13668 [kworker/u8:3]
+root     13669 [kworker/u8:4]
+root     13832 [kworker/1:2]
+jainebu+ 13971 python3 manager.py
+jainebu+ 13980 /bin/sh -c ps -eo user,pid,command > processes.txt
+jainebu+ 13981 ps -eo user,pid,command

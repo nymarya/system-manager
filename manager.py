@@ -4,9 +4,12 @@ from matplotlib.backends.backend_qt4agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.backends.backend_qt4agg import NavigationToolbar2QT as NavigationToolbar
 from matplotlib.figure import Figure
 
+from PyQt4.QtGui import * 
+from PyQt4.QtCore import * 
+
 import random
 import memory
-import managerProcess
+import managerProcesses
 from css import MENU_CSS
 import processes
 import page_faults
@@ -18,6 +21,9 @@ class Window(QtGui.QDialog):
         super(Window, self).__init__(parent)
 
         self.listWidget = None
+
+        self.table = None
+        self.tableItem = None
 
         # a figure instance to plot on
         self.figure = Figure()
@@ -71,7 +77,7 @@ class Window(QtGui.QDialog):
         self.menuProcess = self.myQMenuBar.addMenu('Processo')
      
         plot7 = QtGui.QAction('&Listar processos ativos', self)        
-        plot7.triggered.connect(lambda: self.plot( managerProcess.listProcesses() ))
+        plot7.triggered.connect(lambda: self.listviewProc( managerProcesses.listProcesses() ))
         self.menuProcess.addAction(plot7)
 
         plot8 = QtGui.QAction('&Processador total x Processador usado', self)        
@@ -120,6 +126,55 @@ class Window(QtGui.QDialog):
         myPageFaultsQWidget.setTextMajFlt(texts[len(texts)-1])
         return myPageFaultsQWidget
 
+
+    def listviewProc(self, data):
+
+        
+
+      
+        if( self.table == None or self.layout.indexOf(self.table) == -1):
+            self.table = QtGui.QTableWidget()
+        else:
+            self.table.clear()
+
+
+
+        self.tableItem 	= QTableWidgetItem()
+    
+        # initiate table
+        self.table.setWindowTitle("QTableWidget Example @pythonspot.com")
+        self.table.setRowCount(6)
+        self.table.setColumnCount(4)
+    
+
+        
+        for i,text in enumerate(data):
+
+            txtSplit = " ".join(text.split()) 
+            words = txtSplit.split(" ")
+            user = words[0]
+            pid = words[1]
+
+            command = text
+            command = command.replace(user, '')
+            command = command.replace(pid, '')
+        
+            self.table.setItem(i,0, QTableWidgetItem(user))
+            self.table.setItem(i,1, QTableWidgetItem(pid))
+            self.table.setItem(i,2, QTableWidgetItem(command))
+            
+            button = QtGui.QPushButton("Kill")
+            self.table.setCellWidget(i,3, button)
+            
+
+        # show table
+        self.layout.addWidget(self.table)
+        self.layout.removeWidget(self.canvas)
+
+
+
+
+
     def listview(self, data):
         '''show list with page faults'''
 
@@ -142,6 +197,10 @@ class Window(QtGui.QDialog):
             self.listWidget.show()
         else:
             self.layout.addWidget(self.listWidget)
+
+
+
+
 
     def plot(self, data):
         ''' plot some random stuff 
