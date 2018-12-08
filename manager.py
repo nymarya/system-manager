@@ -1,5 +1,5 @@
 import sys
-from PyQt4 import QtGui
+from PyQt4 import QtGui, QtCore
 from matplotlib.backends.backend_qt4agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.backends.backend_qt4agg import NavigationToolbar2QT as NavigationToolbar
 from matplotlib.figure import Figure
@@ -7,6 +7,7 @@ from matplotlib.figure import Figure
 import random
 import memory
 from css import MENU_CSS
+import processes
 
 class Window(QtGui.QDialog):
 
@@ -26,6 +27,8 @@ class Window(QtGui.QDialog):
         # this is the Navigation widget
         # it takes the Canvas widget and a parent
         self.toolbar = NavigationToolbar(self.canvas, self)
+
+        self.thread = processes.PageFaultListener()
 
         #### Cria menu
         self.myQMenuBar = QtGui.QMenuBar(self)
@@ -57,9 +60,10 @@ class Window(QtGui.QDialog):
         self.menuMemoria.addAction(plot5)
 
         ##plota grafico 5
-        plot6 = QtGui.QAction('Faltas de páginas por processos', self)        
-        plot6.triggered.connect(lambda: self.listview( memory.pageFaults() ))
+        plot6 = QtGui.QAction('Faltas de páginas por processos', self)
+        plot6.triggered.connect(self.connectThread)        
         self.menuMemoria.addAction(plot6)
+        
 
         # set the layout
         self.layout = QtGui.QVBoxLayout()
@@ -67,11 +71,23 @@ class Window(QtGui.QDialog):
         self.layout.addWidget(self.toolbar)
         self.layout.addWidget(self.canvas)
         self.setLayout(self.layout)
+
+    def connectThread(self):
+        self.thread.start()
+        print('cc')
+        signal = QtCore.SIGNAL("output(PyQt_PyObject)")
+        self.connect(self.thread, signal, self.listview)
         
     def listview(self, data):
         '''show list with page faults'''
+        
+        print('bb')
+        try:
+            self.layout.removeWidget(self.listWidget)
+        except:
+            pass
         self.listWidget = QtGui.QListWidget()
-	
+        
         for text in data:
             self.listWidget.addItem(text)
             
@@ -85,7 +101,7 @@ class Window(QtGui.QDialog):
         ''' plot some random stuff 
             @see: https://stackoverflow.com/questions/12459811/how-to-embed-matplotlib-in-pyqt-for-dummies
         '''
-        
+        self.thread.stop()
         if( self.listWidget != None):
             self.listWidget.hide()
             self.layout.addWidget(self.canvas)
