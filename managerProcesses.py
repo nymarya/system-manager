@@ -13,3 +13,7 @@ def listProcesses():
     arc.close()
     
     return text
+    
+
+def killProcess(data):
+    print(data)        

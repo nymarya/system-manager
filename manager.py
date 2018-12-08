@@ -129,8 +129,10 @@ class Window(QtGui.QDialog):
 
     def listviewProc(self, data):
 
-        
 
+        btnShowTree = QtGui.QPushButton("Exibir árvore de processos")
+        self.layout.addWidget(btnShowTree)
+        
       
         if( self.table == None or self.layout.indexOf(self.table) == -1):
             self.table = QtGui.QTableWidget()
@@ -143,10 +145,8 @@ class Window(QtGui.QDialog):
     
         # initiate table
         self.table.setWindowTitle("QTableWidget Example @pythonspot.com")
-        self.table.setRowCount(6)
-        self.table.setColumnCount(4)
-    
-
+        self.table.setRowCount(len(data))
+        self.table.setColumnCount(5)
         
         for i,text in enumerate(data):
 
@@ -165,12 +165,19 @@ class Window(QtGui.QDialog):
             
             button = QtGui.QPushButton("Kill")
             self.table.setCellWidget(i,3, button)
-            
+            button.clicked.connect(
+                lambda: managerProcesses.killProcess(i))
+
+            button = QtGui.QPushButton("Infos")
+            self.table.setCellWidget(i,4, button)
+            button.clicked.connect(
+                lambda: managerProcesses.killProcess(i))
+
+
 
         # show table
         self.layout.addWidget(self.table)
         self.layout.removeWidget(self.canvas)
-
 
 
 
