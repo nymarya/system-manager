@@ -15,5 +15,10 @@ def listProcesses():
     return text
     
 
-def killProcess(data):
-    print(data)        
+def killProcess(pid, com, index):
+    print(pid)        
+
+
+
+def infoProcess(pid, com, index):
+    print(pid)        

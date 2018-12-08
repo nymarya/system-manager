@@ -14,7 +14,11 @@ from css import MENU_CSS
 import processes
 import page_faults
 
+from functools import partial
+
+
 class Window(QtGui.QDialog):
+
 
     listWidget = None
     def __init__(self, parent=None):
@@ -25,7 +29,6 @@ class Window(QtGui.QDialog):
         self.table = None
         self.tableItem = None
 
-        self.buttons = []
 
 
         # a figure instance to plot on
@@ -132,6 +135,7 @@ class Window(QtGui.QDialog):
 
     def listviewProc(self, data):
 
+        self.processesData = data
 
         btnShowTree = QtGui.QPushButton("Exibir árvore de processos")
         self.layout.addWidget(btnShowTree)
@@ -169,37 +173,24 @@ class Window(QtGui.QDialog):
             self.table.setItem(i,1, QTableWidgetItem(pid))
             self.table.setItem(i,2, QTableWidgetItem(command))
             
-            #buttonKill = QtGui.QPushButton("Kill")
-            self.buttons.append( QtGui.QPushButton("Kill") )
 
-            self.table.setCellWidget(i,3, self.buttons[i])
-            self.buttons[i].clicked.connect(
-                lambda: managerProcesses.killProcess(pid))
+            # kill button
+            buttonKill = QtGui.QPushButton("Kill")
+            self.table.setCellWidget(i,3, buttonKill)
+            buttonKill.clicked.connect(partial(managerProcesses.killProcess, pid, command, i))
 
-            
-            '''
+            # more info button
             buttonInfos = QtGui.QPushButton("Infos")
             self.table.setCellWidget(i,4, buttonInfos)
-            buttonInfos.clicked.connect(
-                lambda: managerProcesses.killProcess(pid))
-            '''
+            buttonInfos.clicked.connect(partial(managerProcesses.infoProcess, pid, command, i))
 
-            #self.buttons.append( buttonKill )
-            #self.buttons.append( buttonInfos )
 
-    
-        self.table.cellClicked.connect(self.cellClick)
         
-
-
         # show table
         self.layout.addWidget(self.table)
         self.layout.removeWidget(self.canvas)
 
 
-    def cellClick(row,col):
-        #print("Click on " + row + " " + col)
-        print(row)
 
 
     def listview(self, data):
