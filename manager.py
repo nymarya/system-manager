@@ -1,5 +1,5 @@
 import sys
-from PyQt4 import QtGui
+from PyQt4 import QtGui, QtCore
 from matplotlib.backends.backend_qt4agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.backends.backend_qt4agg import NavigationToolbar2QT as NavigationToolbar
 from matplotlib.figure import Figure
@@ -7,6 +7,8 @@ from matplotlib.figure import Figure
 import random
 import memory
 from css import MENU_CSS
+import processes
+import page_faults
 
 class Window(QtGui.QDialog):
 
@@ -26,6 +28,8 @@ class Window(QtGui.QDialog):
         # this is the Navigation widget
         # it takes the Canvas widget and a parent
         self.toolbar = NavigationToolbar(self.canvas, self)
+
+        self.thread = processes.PageFaultListener()
 
         #### Cria menu
         self.myQMenuBar = QtGui.QMenuBar(self)
@@ -57,9 +61,10 @@ class Window(QtGui.QDialog):
         self.menuMemoria.addAction(plot5)
 
         ##plota grafico 5
-        plot6 = QtGui.QAction('Faltas de páginas por processos', self)        
-        plot6.triggered.connect(lambda: self.listview( memory.pageFaults() ))
+        plot6 = QtGui.QAction('Faltas de páginas por processos', self)
+        plot6.triggered.connect(self.connectThread)        
         self.menuMemoria.addAction(plot6)
+        
 
         # set the layout
         self.layout = QtGui.QVBoxLayout()
@@ -67,16 +72,53 @@ class Window(QtGui.QDialog):
         self.layout.addWidget(self.toolbar)
         self.layout.addWidget(self.canvas)
         self.setLayout(self.layout)
+
+    def connectThread(self):
+        self.thread = processes.PageFaultListener()
+        self.thread.start()
+        signal = QtCore.SIGNAL("output(PyQt_PyObject)")
+        self.connect(self.thread, signal, self.listview)
         
+    def formatPsResult(self, line):
+        """ Format each line result from the ps command
+
+        @param line Line from ps command
+        @return 
+        """
+        #separate the values
+        texts = line.split()
+
+        items = []
+        ## format process name
+        texts[1] = ' '.join(texts[1:len(texts)-2]).ljust(50)
+
+        
+        myPageFaultsQWidget = page_faults.PageFaultsQWidget()
+        myPageFaultsQWidget.setTextPID(texts[0])
+        myPageFaultsQWidget.setTextCommand(texts[1])
+        myPageFaultsQWidget.setTextMinFlt(texts[len(texts)-2])
+        myPageFaultsQWidget.setTextMajFlt(texts[len(texts)-1])
+        return myPageFaultsQWidget
+
     def listview(self, data):
         '''show list with page faults'''
-        self.listWidget = QtGui.QListWidget()
-	
-        for text in data:
-            self.listWidget.addItem(text)
+
+        if( self.listWidget == None or self.layout.indexOf(self.listWidget) == -1):
+            self.listWidget = QtGui.QListWidget()
+        else:
+            self.listWidget.clear()
+        
+        for i,text in enumerate(data):
+            item = self.formatPsResult(text)
+
+            myQListWidgetItem = QtGui.QListWidgetItem(self.listWidget)
+            # Set size hint
+            myQListWidgetItem.setSizeHint(item.sizeHint())
+            self.listWidget.addItem(myQListWidgetItem)
+            self.listWidget.setItemWidget(myQListWidgetItem, item)
             
         self.layout.removeWidget(self.canvas)
-        if( self.listWidget != None and self.layout.indexOf(self.listWidget) != -1):
+        if( self.listWidget != None and self.layout.indexOf(self.listWidget) != -1 and not self.thread.exiting):
             self.listWidget.show()
         else:
             self.layout.addWidget(self.listWidget)
@@ -85,7 +127,7 @@ class Window(QtGui.QDialog):
         ''' plot some random stuff 
             @see: https://stackoverflow.com/questions/12459811/how-to-embed-matplotlib-in-pyqt-for-dummies
         '''
-        
+        self.thread.stop()
         if( self.listWidget != None):
             self.listWidget.hide()
             self.layout.addWidget(self.canvas)
