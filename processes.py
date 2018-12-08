@@ -20,7 +20,6 @@ class PageFaultListener(QtCore.QThread):
         self.start()
     
     def stop(self):
-        print("stop")
         self.exiting = True
         self.__del__()
 

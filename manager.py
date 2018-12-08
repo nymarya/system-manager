@@ -8,42 +8,7 @@ import random
 import memory
 from css import MENU_CSS
 import processes
-
-class PageFaultsQWidget (QtGui.QWidget):
-    def __init__ (self, parent = None):
-        super(PageFaultsQWidget, self).__init__(parent)
-        self.label1 = QtGui.QLabel()
-        self.label2 = QtGui.QLabel()
-        self.label3 = QtGui.QLabel()
-        self.label4 = QtGui.QLabel()
-
-        self.vbox = QtGui.QVBoxLayout()
-
-        self.hbox = QtGui.QHBoxLayout()
-        self.hbox.addWidget(self.label1, 1, QtCore.Qt.AlignRight)
-        self.hbox.addStretch(1)
-        self.hbox.addWidget(self.label2, 1, QtCore.Qt.AlignRight)
-        self.hbox.addStretch(1)
-        self.hbox.addWidget(self.label3, 1, QtCore.Qt.AlignRight)
-        self.hbox.addStretch(1)
-        self.hbox.addWidget(self.label4 , 1, QtCore.Qt.AlignRight)
-
-        self.vbox.addStretch()
-        self.vbox.addLayout(self.hbox)
-        self.setLayout(self.vbox)
-
-    def setTextPID (self, text):
-        self.label1.setText(text)
-
-    def setTextCommand (self, text):
-        self.label2.setText(text)
-
-    def setTextMinFlt (self, text):
-        self.label3.setText(text)
-
-    def setTextMajFlt (self, text):
-        self.label4.setText(text)
-
+import page_faults
 
 class Window(QtGui.QDialog):
 
@@ -111,7 +76,6 @@ class Window(QtGui.QDialog):
     def connectThread(self):
         self.thread = processes.PageFaultListener()
         self.thread.start()
-        print('cc')
         signal = QtCore.SIGNAL("output(PyQt_PyObject)")
         self.connect(self.thread, signal, self.listview)
         
@@ -129,7 +93,7 @@ class Window(QtGui.QDialog):
         texts[1] = ' '.join(texts[1:len(texts)-2]).ljust(50)
 
         
-        myPageFaultsQWidget = PageFaultsQWidget()
+        myPageFaultsQWidget = page_faults.PageFaultsQWidget()
         myPageFaultsQWidget.setTextPID(texts[0])
         myPageFaultsQWidget.setTextCommand(texts[1])
         myPageFaultsQWidget.setTextMinFlt(texts[len(texts)-2])
@@ -145,35 +109,24 @@ class Window(QtGui.QDialog):
             self.listWidget.clear()
         
         for i,text in enumerate(data):
-            line = self.formatPsResult(text)
-            #print(line)
-            """
-            # Create PageFaultsQWidget
-            myPageFaultsQWidget = QtGui.QLabel()
-            myPageFaultsQWidget.setText(line)
-            # Create QListWidgetItem"""
+            item = self.formatPsResult(text)
+
             myQListWidgetItem = QtGui.QListWidgetItem(self.listWidget)
             # Set size hint
-            myQListWidgetItem.setSizeHint(line.sizeHint())
+            myQListWidgetItem.setSizeHint(item.sizeHint())
             self.listWidget.addItem(myQListWidgetItem)
-            self.listWidget.setItemWidget(myQListWidgetItem, line)
-            #self.listWidget.insertItem(i, line)
-            #myQListWidgetItem.setLayout(line)
-            #self.listWidget.addItem(myQListWidgetItem)
-            #myQListWidgetItem.deleteLater()
+            self.listWidget.setItemWidget(myQListWidgetItem, item)
             
         self.layout.removeWidget(self.canvas)
         if( self.listWidget != None and self.layout.indexOf(self.listWidget) != -1 and not self.thread.exiting):
             self.listWidget.show()
         else:
-            print("dd")
             self.layout.addWidget(self.listWidget)
 
     def plot(self, data):
         ''' plot some random stuff 
             @see: https://stackoverflow.com/questions/12459811/how-to-embed-matplotlib-in-pyqt-for-dummies
         '''
-        print('ee')
         self.thread.stop()
         if( self.listWidget != None):
             self.listWidget.hide()
