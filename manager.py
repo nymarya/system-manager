@@ -9,6 +9,42 @@ import memory
 from css import MENU_CSS
 import processes
 
+class PageFaultsQWidget (QtGui.QWidget):
+    def __init__ (self, parent = None):
+        super(PageFaultsQWidget, self).__init__(parent)
+        self.label1 = QtGui.QLabel()
+        self.label2 = QtGui.QLabel()
+        self.label3 = QtGui.QLabel()
+        self.label4 = QtGui.QLabel()
+
+        self.vbox = QtGui.QVBoxLayout()
+
+        self.hbox = QtGui.QHBoxLayout()
+        self.hbox.addWidget(self.label1, 1, QtCore.Qt.AlignRight)
+        self.hbox.addStretch(1)
+        self.hbox.addWidget(self.label2, 1, QtCore.Qt.AlignRight)
+        self.hbox.addStretch(1)
+        self.hbox.addWidget(self.label3, 1, QtCore.Qt.AlignRight)
+        self.hbox.addStretch(1)
+        self.hbox.addWidget(self.label4 , 1, QtCore.Qt.AlignRight)
+
+        self.vbox.addStretch()
+        self.vbox.addLayout(self.hbox)
+        self.setLayout(self.vbox)
+
+    def setTextPID (self, text):
+        self.label1.setText(text)
+
+    def setTextCommand (self, text):
+        self.label2.setText(text)
+
+    def setTextMinFlt (self, text):
+        self.label3.setText(text)
+
+    def setTextMajFlt (self, text):
+        self.label4.setText(text)
+
+
 class Window(QtGui.QDialog):
 
     listWidget = None
@@ -73,6 +109,7 @@ class Window(QtGui.QDialog):
         self.setLayout(self.layout)
 
     def connectThread(self):
+        self.thread = processes.PageFaultListener()
         self.thread.start()
         print('cc')
         signal = QtCore.SIGNAL("output(PyQt_PyObject)")
@@ -85,43 +122,58 @@ class Window(QtGui.QDialog):
         @return 
         """
         #separate the values
-        texts = line.split(' ')
+        texts = line.split()
 
-        ## format pid
-        texts[0] = texts[0].ljust(5)
+        items = []
         ## format process name
-        texts[1] = texts[1].rjust(len(line) - 17)
-        ## format minor faults
-        texts[2] = texts[2].rjust(6)
-        ## format major faults
-        texts[3] = texts[3].rjust(6)
+        texts[1] = ' '.join(texts[1:len(texts)-2]).ljust(50)
 
-        return ' '.join(texts).rjust(self.listWidget.width())
+        
+        myPageFaultsQWidget = PageFaultsQWidget()
+        myPageFaultsQWidget.setTextPID(texts[0])
+        myPageFaultsQWidget.setTextCommand(texts[1])
+        myPageFaultsQWidget.setTextMinFlt(texts[len(texts)-2])
+        myPageFaultsQWidget.setTextMajFlt(texts[len(texts)-1])
+        return myPageFaultsQWidget
 
     def listview(self, data):
         '''show list with page faults'''
+
+        if( self.listWidget == None or self.layout.indexOf(self.listWidget) == -1):
+            self.listWidget = QtGui.QListWidget()
+        else:
+            self.listWidget.clear()
         
-        print('bb')
-        try:
-            self.layout.removeWidget(self.listWidget)
-        except:
-            pass
-        self.listWidget = QtGui.QListWidget()
-        
-        for text in data:
+        for i,text in enumerate(data):
             line = self.formatPsResult(text)
-            self.listWidget.addItem(line)
+            #print(line)
+            """
+            # Create PageFaultsQWidget
+            myPageFaultsQWidget = QtGui.QLabel()
+            myPageFaultsQWidget.setText(line)
+            # Create QListWidgetItem"""
+            myQListWidgetItem = QtGui.QListWidgetItem(self.listWidget)
+            # Set size hint
+            myQListWidgetItem.setSizeHint(line.sizeHint())
+            self.listWidget.addItem(myQListWidgetItem)
+            self.listWidget.setItemWidget(myQListWidgetItem, line)
+            #self.listWidget.insertItem(i, line)
+            #myQListWidgetItem.setLayout(line)
+            #self.listWidget.addItem(myQListWidgetItem)
+            #myQListWidgetItem.deleteLater()
             
         self.layout.removeWidget(self.canvas)
-        if( self.listWidget != None and self.layout.indexOf(self.listWidget) != -1):
+        if( self.listWidget != None and self.layout.indexOf(self.listWidget) != -1 and not self.thread.exiting):
             self.listWidget.show()
         else:
+            print("dd")
             self.layout.addWidget(self.listWidget)
 
     def plot(self, data):
         ''' plot some random stuff 
             @see: https://stackoverflow.com/questions/12459811/how-to-embed-matplotlib-in-pyqt-for-dummies
         '''
+        print('ee')
         self.thread.stop()
         if( self.listWidget != None):
             self.listWidget.hide()
