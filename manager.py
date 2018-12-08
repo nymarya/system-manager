@@ -6,6 +6,7 @@ from matplotlib.figure import Figure
 
 import random
 import memory
+import managerProcess
 from css import MENU_CSS
 import processes
 import page_faults
@@ -65,6 +66,25 @@ class Window(QtGui.QDialog):
         plot6.triggered.connect(self.connectThread)        
         self.menuMemoria.addAction(plot6)
         
+
+
+        self.menuProcess = self.myQMenuBar.addMenu('Processo')
+     
+        plot7 = QtGui.QAction('&Listar processos ativos', self)        
+        plot7.triggered.connect(lambda: self.plot( managerProcess.listProcesses() ))
+        self.menuProcess.addAction(plot7)
+
+        plot8 = QtGui.QAction('&Processador total x Processador usado', self)        
+        plot8.triggered.connect(lambda: self.plot( memory.plotGraph5() ))
+        self.menuProcess.addAction(plot8)
+
+        plot9 = QtGui.QAction('&Processos em cada estado no processador', self)        
+        plot9.triggered.connect(lambda: self.plot( memory.plotGraph5() ))
+        self.menuProcess.addAction(plot9)
+
+
+        self.generateReport = self.myQMenuBar.addMenu('Gerar relatório')
+
 
         # set the layout
         self.layout = QtGui.QVBoxLayout()
