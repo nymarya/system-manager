@@ -105,3 +105,6 @@ venv.bak/
 
 # temp file
 pageFaults.txt
+
+#ide file
+.vscode/
