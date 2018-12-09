@@ -21,6 +21,10 @@ class Window(QtGui.QDialog):
 
 
     listWidget = None
+
+
+    man = managerProcesses.ManagerProcesses()
+
     def __init__(self, parent=None):
         super(Window, self).__init__(parent)
 
@@ -82,8 +86,9 @@ class Window(QtGui.QDialog):
 
         self.menuProcess = self.myQMenuBar.addMenu('Processo')
      
+
         plot7 = QtGui.QAction('&Listar processos ativos', self)        
-        plot7.triggered.connect(lambda: self.listviewProc( managerProcesses.listProcesses() ))
+        plot7.triggered.connect(lambda: self.listviewProc( self.man.listProcesses() ))
         self.menuProcess.addAction(plot7)
 
         plot8 = QtGui.QAction('&Processador total x Processador usado', self)        
@@ -177,12 +182,12 @@ class Window(QtGui.QDialog):
             # kill button
             buttonKill = QtGui.QPushButton("Kill")
             self.table.setCellWidget(i,3, buttonKill)
-            buttonKill.clicked.connect(partial(managerProcesses.killProcess, pid, command, i))
+            buttonKill.clicked.connect(partial(self.man.killProcess, pid, command, i))
 
             # more info button
             buttonInfos = QtGui.QPushButton("Infos")
             self.table.setCellWidget(i,4, buttonInfos)
-            buttonInfos.clicked.connect(partial(managerProcesses.infoProcess, pid, command, i))
+            buttonInfos.clicked.connect(partial(self.man.infoProcess, pid, command, i))
 
 
         

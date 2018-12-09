@@ -2,23 +2,28 @@ from PyQt4 import QtGui, QtCore
 import subprocess
 
 
-def listProcesses():
-    subprocess.call(["ps -eo user,pid,command > processes.txt"], shell=True)
+class ManagerProcesses:
 
-    # abre arquivo com informacoes
-    arc = open('processes.txt', 'r')
-    # le cada linha do arquivo
-    text = arc.readlines()
-    # fecha arquivo
-    arc.close()
-    
-    return text
-    
+    def listProcesses(self):
+        subprocess.call(["ps -eo user,pid,command > processes.txt"], shell=True)
 
-def killProcess(pid, com, index):
-    print(pid)        
+        # abre arquivo com informacoes
+        arc = open('processes.txt', 'r')
+        # le cada linha do arquivo
+        text = arc.readlines()
+        # fecha arquivo
+        arc.close()
+        
+        return text
+        
+
+    def killProcess(self, pid, com, index):
+        subprocess.call(["kill -9 23467"], shell=True)
+        mb = QtGui.QMessageBox ("","Processo excluído com sucesso",QtGui.QMessageBox.Warning,QtGui.QMessageBox.Ok,0,0)
+        mb.exec_()
 
 
-
-def infoProcess(pid, com, index):
-    print(pid)        
+    def infoProcess(self, pid, com, index):
+        subprocess.call()
+        mb = QtGui.QMessageBox ("","INFORMACOES DO PROCESSO",QtGui.QMessageBox.Information,QtGui.QMessageBox.Ok,0,0)
+        mb.exec_()
