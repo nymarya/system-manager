@@ -2,6 +2,7 @@ import sys
 from PyQt4 import QtGui, QtCore
 from matplotlib.backends.backend_qt4agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.backends.backend_qt4agg import NavigationToolbar2QT as NavigationToolbar
+import matplotlib.pyplot as plt
 from matplotlib.figure import Figure
 
 import random
@@ -79,14 +80,15 @@ class Window(QtGui.QDialog):
         #### Cria menu
         self.menuProcessStatistics = self.myQMenuBar.addMenu('Estatística de processos')
         # Gráfico: total x usado
-        plot1 = QtGui.QAction('&Total x Usado', self)        
-        plot1.triggered.connect(lambda: self.plot( memory.plotGraph1() ))
+        plot1 = QtGui.QAction('&Total x Usado', self)  
+        thread = processes.CPUListener
+        plot1.triggered.connect(lambda: self.connectThreadProcesses( thread ))
         self.menuProcessStatistics.addAction(plot1)
 
         # Gráfico: quantidade de processos em cada estado (pronto, suspenso, rodando, etc)
         plot2 = QtGui.QAction('&Processos por estado', self)  
-        thread = processes.ProcessStatusListener()      
-        plot2.triggered.connect(lambda: self.connectThreadProcesses( thread ))
+        thread1 = processes.ProcessStatusListener      
+        plot2.triggered.connect(lambda: self.connectThreadProcesses( thread1 ))
         self.menuProcessStatistics.addAction(plot2)
 
     def connectThread(self):
@@ -96,7 +98,11 @@ class Window(QtGui.QDialog):
         self.connect(self.thread, signal, self.listview)
 
     def connectThreadProcesses(self, thread):
-        self.threadProcesses = thread
+        try:
+            self.threadProcesses.stop()
+        except:
+            pass
+        self.threadProcesses = thread()
         self.threadProcesses.start()
         signal = QtCore.SIGNAL("output(PyQt_PyObject)")
         self.connect(self.threadProcesses, signal, self.plot)
@@ -149,15 +155,28 @@ class Window(QtGui.QDialog):
         ''' plot some random stuff 
             @see: https://stackoverflow.com/questions/12459811/how-to-embed-matplotlib-in-pyqt-for-dummies
         '''
-        if(len(data[0]) == 2):
+        # Para a thread de processos se o dado recebido não for float (CPU)
+        # Ou se receber for mais de 2 objetos (Status)
+        if( not isinstance(data[0], float) and len(data[0]) == 2 and hasattr(self, 'threadProcesses')):
             self.threadProcesses.stop()
-            print('stop')
 
         self.thread.stop()
         if( self.listWidget != None):
             self.listWidget.hide()
             self.layout.addWidget(self.canvas)
 
+        if(hasattr(self, 'threadProcesses') and self.threadProcesses.isCPU):
+            self.plotCPU(data)
+        else:
+            self.plotData(data)
+
+        # refresh canvas
+        self.canvas.draw()
+
+    def plotData(self, data):
+
+        for ax in self.figure.axes:
+            self.figure.delaxes(ax)
         # create an axis
         ax = self.figure.add_subplot(111)
 
@@ -167,7 +186,7 @@ class Window(QtGui.QDialog):
         # plot data 
         labels = data[0]
         titles = data[1]
-        print(titles)
+        
         color = ['lightblue', 'green']
         # If the colors are sent
         if(len(data)> 2):
@@ -177,8 +196,50 @@ class Window(QtGui.QDialog):
         ax.pie(titles, explode=None, labels=labels, colors=color, autopct=lambda p: '{:.0f}'.format(p * total / 100), shadow=True, startangle=90)
 
 
-        # refresh canvas
-        self.canvas.draw()
+    def plotCPU(self, data):
+        ''' plot cpu data
+            @see: https://stackoverflow.com/questions/12459811/how-to-embed-matplotlib-in-pyqt-for-dummies
+        '''
+
+        for ax in self.figure.axes:
+                self.figure.delaxes(ax)
+
+        color = ['orange', 'blue']
+        
+        # multicore
+        if(len(data) == 4):
+            
+            ax1 = self.figure.add_subplot(221)
+            # discards the old graph
+            ax1.clear()
+            ax1.pie([100.0-data[0], data[0]], colors=color, autopct=lambda p: '{:.0f}%'.format(p))
+
+            ax2 = self.figure.add_subplot(222)
+            # discards the old graph
+            ax2.clear()
+            ax2.pie([100.0-data[1], data[1]], colors=color, autopct=lambda p: '{:.0f}%'.format(p))
+
+            ax3 = self.figure.add_subplot(223)
+            # discards the old graph
+            ax3.clear()
+            ax3.pie([100.0-data[2], data[2]], colors=color, autopct=lambda p: '{:.0f}%'.format(p))
+
+            ax4 = self.figure.add_subplot(224)
+            # discards the old graph
+            ax4.clear()
+            ax4.pie([100.0-data[3], data[3]], colors=color, autopct=lambda p: '{:.0f}%'.format(p))
+
+        elif (len(data) == 2 ):
+            ax1 = self.figure.add_subplot(211)
+            # discards the old graph
+            ax1.clear()
+            ax1.pie([100.0-data[0], data[0]], colors=color, autopct=lambda p: '{:.0f}%'.format(p))
+
+            ax2 = self.figure.add_subplot(212)
+            # discards the old graph
+            ax2.clear()
+            ax2.pie([100.0-data[1], data[1]], colors=color, autopct=lambda p: '{:.0f}%'.format(p))
+
 
 if __name__ == '__main__':
     app = QtGui.QApplication(sys.argv)
