@@ -5,19 +5,36 @@ from matplotlib.backends.backend_qt4agg import NavigationToolbar2QT as Navigatio
 import matplotlib.pyplot as plt
 from matplotlib.figure import Figure
 
+from PyQt4.QtGui import * 
+from PyQt4.QtCore import * 
+
 import random
 import memory
+import managerProcesses
 from css import MENU_CSS
 import processes
 import page_faults
 
+from functools import partial
+
+
 class Window(QtGui.QDialog):
 
+
     listWidget = None
+
+
+    man = managerProcesses.ManagerProcesses()
+
     def __init__(self, parent=None):
         super(Window, self).__init__(parent)
 
         self.listWidget = None
+
+        self.table = None
+        self.tableItem = None
+
+
 
         # a figure instance to plot on
         self.figure = Figure()
@@ -65,7 +82,26 @@ class Window(QtGui.QDialog):
         plot6 = QtGui.QAction('Faltas de páginas por processos', self)
         plot6.triggered.connect(self.connectThread)        
         self.menuMemoria.addAction(plot6)
-        
+
+
+        self.menuProcess = self.myQMenuBar.addMenu('Processo')
+     
+
+        plot7 = QtGui.QAction('&Listar processos ativos', self)        
+        plot7.triggered.connect(lambda: self.listviewProc( self.man.listProcesses() ))
+        self.menuProcess.addAction(plot7)
+
+        plot8 = QtGui.QAction('&Processador total x Processador usado', self)        
+        plot8.triggered.connect(lambda: self.plot( memory.plotGraph5() ))
+        self.menuProcess.addAction(plot8)
+
+        plot9 = QtGui.QAction('&Processos em cada estado no processador', self)        
+        plot9.triggered.connect(lambda: self.plot( memory.plotGraph5() ))
+        self.menuProcess.addAction(plot9)
+
+
+        self.generateReport = self.myQMenuBar.addMenu('Gerar relatório')
+
 
         self.createMenuProcesses()
 
@@ -128,6 +164,84 @@ class Window(QtGui.QDialog):
         myPageFaultsQWidget.setTextMajFlt(texts[len(texts)-1])
         return myPageFaultsQWidget
 
+
+    def listviewProc(self, data):
+
+        self.processesData = data
+
+
+        # busca por PID
+        inputSearch = QLineEdit()
+        inputSearch.setFixedWidth(200)
+        
+        btnSearch = QtGui.QPushButton("Buscar")
+        btnSearch.setFixedWidth(80)
+
+        btnSearch.clicked.connect( lambda: self.man.searchProcess( inputSearch ) )
+
+
+        self.layout.addWidget(inputSearch)
+        self.layout.addWidget(btnSearch)
+
+      
+        # inicio config tabela
+        if( self.table == None or self.layout.indexOf(self.table) == -1):
+            self.table = QtGui.QTableWidget()
+        else:
+            self.table.clear()
+
+
+
+        self.tableItem 	= QTableWidgetItem()
+    
+        # initiate table
+        self.table.setWindowTitle("Gerenciador de processos")
+        self.table.setRowCount(len(data))
+        self.table.setColumnCount(6)
+        
+        
+
+
+        for i,text in enumerate(data):
+
+            txtSplit = " ".join(text.split()) 
+            words = txtSplit.split(" ")
+            user = words[0]
+            pid = words[1]
+
+            command = text
+            command = command.replace(user, '')
+            command = command.replace(pid, '')
+        
+            self.table.setItem(i,0, QTableWidgetItem(user))
+            self.table.setItem(i,1, QTableWidgetItem(pid))
+            self.table.setItem(i,2, QTableWidgetItem(command))
+            
+
+            # kill button
+            buttonKill = QtGui.QPushButton("Kill")
+            self.table.setCellWidget(i,3, buttonKill)
+            buttonKill.clicked.connect(partial(self.man.killProcess, pid, command, i))
+
+            # more info button
+            buttonInfos = QtGui.QPushButton("Infos")
+            self.table.setCellWidget(i,4, buttonInfos)
+            buttonInfos.clicked.connect(partial(self.man.infoProcess, pid, command, i))
+
+            # tree button
+            buttonTree = QtGui.QPushButton("Árvore")
+            self.table.setCellWidget(i,5, buttonTree)
+            buttonTree.clicked.connect(partial(self.man.treeProcess, pid, command, i))
+
+            
+
+        # show table
+        self.layout.addWidget(self.table)
+        self.layout.removeWidget(self.canvas)
+
+
+
+
     def listview(self, data):
         '''show list with page faults'''
         self.threadProcesses.stop()
@@ -150,6 +264,10 @@ class Window(QtGui.QDialog):
             self.listWidget.show()
         else:
             self.layout.addWidget(self.listWidget)
+
+
+
+
 
     def plot(self, data):
         ''' plot some random stuff 
