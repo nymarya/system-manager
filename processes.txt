@@ -24,13 +24,9 @@ root        25 [cpuhp/3]
 root        26 [watchdog/3]
 root        27 [migration/3]
 root        28 [ksoftirqd/3]
-root        29 [kworker/3:0]
 root        30 [kworker/3:0H]
 root        31 [kdevtmpfs]
 root        32 [netns]
-root        33 [kworker/0:1]
-root        34 [kworker/1:1]
-root        35 [kworker/2:1]
 root        36 [khungtaskd]
 root        37 [oom_reaper]
 root        38 [writeback]
@@ -40,13 +36,11 @@ root        41 [khugepaged]
 root        42 [crypto]
 root        43 [kintegrityd]
 root        44 [kblockd]
-root        45 [kworker/3:1]
 root        46 [ata_sff]
 root        47 [md]
 root        48 [edac-poller]
 root        49 [devfreq_wq]
 root        50 [watchdogd]
-root        51 [kworker/u8:1]
 root        53 [kauditd]
 root        54 [kswapd0]
 root        55 [ecryptfs-kthrea]
@@ -55,8 +49,6 @@ root        98 [acpi_thermal_pm]
 root       103 [ipv6_addrconf]
 root       124 [kworker/u8:3]
 root       133 [charger_manager]
-root       162 [kworker/2:2]
-root       179 [kworker/2:3]
 root       180 [scsi_eh_0]
 root       181 [scsi_tmf_0]
 root       182 [scsi_eh_1]
@@ -71,8 +63,6 @@ root       211 [jbd2/sda4-8]
 root       212 [ext4-rsv-conver]
 root       243 [kworker/3:1H]
 root       245 /lib/systemd/systemd-journald
-root       261 [kworker/1:2]
-root       264 [kworker/0:2]
 root       265 /lib/systemd/systemd-udevd
 root       280 [loop0]
 root       283 [loop1]
@@ -87,7 +77,6 @@ root       346 [kworker/u9:1]
 root       347 [cfg80211]
 root       374 [ath10k_wq]
 root       375 [ath10k_aux_wq]
-root       380 [kworker/u8:4]
 root       395 [kmemstick]
 root       396 [rtsx_usb_ms_1]
 message+   711 /usr/bin/dbus-daemon --system --address=systemd: --nofork --nopidfile --systemd-activation
@@ -244,25 +233,44 @@ jainebu+  4438 /snap/vscode/69/usr/share/code/code --type=renderer --js-flags=--
 jainebu+  4460 /snap/vscode/69/usr/share/code/code --type=renderer --js-flags=--nolazy --disable-mojo-local-storage --no-sandbox --disable-features=ColorCorrectRendering --service-pipe-token=B8CD4F8117C01278186CEFCFF54D1278 --lang=pt-BR --app-path=/snap/vscode/69/usr/share/code/resources/app --node-integration=true --webview-tag=true --no-sandbox --background-color=#1e1e1e --disable-blink-features=Auxclick --context-id=2 --enable-pinch --num-raster-threads=2 --enable-main-frame-before-activation --content-image-texture-target=0,0,3553;0,1,3553;0,2,3553;0,3,3553;0,4,3553;0,5,3553;0,6,3553;0,7,3553;0,8,3553;0,9,3553;0,10,3553;0,11,3553;0,12,3553;0,13,3553;0,14,3553;0,15,3553;0,16,3553;0,17,3553;1,0,3553;1,1,3553;1,2,3553;1,3,3553;1,4,3553;1,5,3553;1,6,3553;1,7,3553;1,8,3553;1,9,3553;1,10,3553;1,11,3553;1,12,3553;1,13,3553;1,14,3553;1,15,3553;1,16,3553;1,17,3553;2,0,3553;2,1,3553;2,2,3553;2,3,3553;2,4,3553;2,5,3553;2,6,3553;2,7,3553;2,8,3553;2,9,3553;2,10,3553;2,11,3553;2,12,3553;2,13,3553;2,14,3553;2,15,3553;2,16,3553;2,17,3553;3,0,3553;3,1,3553;3,2,3553;3,3,3553;3,4,3553;3,5,3553;3,6,3553;3,7,3553;3,8,3553;3,9,3553;3,10,3553;3,11,3553;3,12,3553;3,13,3553;3,14,3553;3,15,3553;3,16,3553;3,17,3553;4,0,3553;4,1,3553;4,2,3553;4,3,3553;4,4,3553;4,5,3553;4,6,3553;4,7,3553;4,8,3553;4,9,3553;4,10,3553;4,11,3553;4,12,3553;4,13,3553;4,14,3553;4,15,3553;4,16,3553;4,17,3553 --disable-accelerated-video-decode --enable-gpu-async-worker-context --service-request-channel-token=B8CD4F8117C01278186CEFCFF54D1278 --renderer-client-id=6 --shared-files=v8_natives_data:100,v8_snapshot_data:101
 jainebu+  4478 /snap/vscode/69/usr/share/code/code /snap/vscode/69/usr/share/code/resources/app/out/bootstrap-fork --type=extensionHost
 jainebu+  4500 /snap/vscode/69/usr/share/code/code /snap/vscode/69/usr/share/code/resources/app/out/bootstrap-fork --type=watcherService
-root      4553 [kworker/u8:5]
 jainebu+  4590 python completion.py
 jainebu+  4593 /usr/bin/python jedi/evaluate/compiled/subprocess/__main__.py  2.7.14
 jainebu+  4621 /opt/google/chrome/chrome --type=zygote
 jainebu+  4643 /usr/lib/x86_64-linux-gnu/deja-dup/deja-dup-monitor
-root      4713 [kworker/3:2]
-root      4716 [kworker/1:0]
-root      4734 [kworker/0:0]
 www-data  5042 /usr/sbin/apache2 -k start
 www-data  5043 /usr/sbin/apache2 -k start
 www-data  5044 /usr/sbin/apache2 -k start
 www-data  5045 /usr/sbin/apache2 -k start
 www-data  5046 /usr/sbin/apache2 -k start
-root      5055 [kworker/2:0]
 root      5056 /usr/sbin/cupsd -l
 root      5057 /usr/sbin/cups-browsed
-jainebu+  5069 /opt/firefox/firefox
 jainebu+  5356 /snap/vscode/69/usr/share/code/code /snap/vscode/69/usr/share/code/resources/app/extensions/html-language-features/server/dist/htmlServerMain --node-ipc --clientProcessId=4478
-jainebu+  5387 /opt/google/chrome/chrome --type=zygote
-jainebu+  5488 python3 manager.py
-jainebu+  5498 /bin/sh -c ps -eo user,pid,command > processes.txt
-jainebu+  5499 ps -eo user,pid,command
+root      5851 [kworker/3:0]
+jainebu+  5896 /opt/google/chrome/chrome --type=zygote
+jainebu+  6272 /opt/google/chrome/chrome --type=zygote
+root      6332 [kworker/1:0]
+jainebu+  6347 /opt/google/chrome/chrome --type=zygote
+jainebu+  6412 /opt/google/chrome/chrome --type=zygote
+jainebu+  6456 bash
+root      6474 [kworker/2:0]
+root      6592 [kworker/u8:2]
+jainebu+  6833 evince /home/jainebudke/Downloads/Aula02___DIM0615.0___2018.2___Processos___Conceitos (1).pdf
+jainebu+  6841 /usr/lib/evince/evinced
+root      6882 [kworker/2:2]
+root      6931 [kworker/0:0]
+root      6987 [kworker/u8:1]
+root      7115 [kworker/0:2]
+root      7125 [kworker/2:3]
+root      7209 [kworker/1:1]
+root      7276 [kworker/3:2]
+root      7278 [kworker/u8:4]
+root      7620 [kworker/0:1]
+jainebu+  7692 /opt/google/chrome/chrome --type=zygote
+root      7719 [kworker/0:3]
+root      7722 [kworker/1:2]
+root      7825 [kworker/3:1]
+root      7844 [kworker/3:3]
+root      7929 [kworker/2:1]
+jainebu+  7953 python3 manager.py
+jainebu+  7963 /bin/sh -c ps -eo user,pid,command > processes.txt
+jainebu+  7964 ps -eo user,pid,command

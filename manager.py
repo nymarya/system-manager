@@ -116,6 +116,7 @@ class Window(QtGui.QDialog):
         signal = QtCore.SIGNAL("output(PyQt_PyObject)")
         self.connect(self.thread, signal, self.listview)
         
+        
     def formatPsResult(self, line):
         """ Format each line result from the ps command
 
