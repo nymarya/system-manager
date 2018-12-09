@@ -84,26 +84,10 @@ class Window(QtGui.QDialog):
         self.menuMemoria.addAction(plot6)
 
 
-        self.menuProcess = self.myQMenuBar.addMenu('Processo')
-     
-
-        plot7 = QtGui.QAction('&Listar processos ativos', self)        
-        plot7.triggered.connect(lambda: self.listviewProc( self.man.listProcesses() ))
-        self.menuProcess.addAction(plot7)
-
-        plot8 = QtGui.QAction('&Processador total x Processador usado', self)        
-        plot8.triggered.connect(lambda: self.plot( memory.plotGraph5() ))
-        self.menuProcess.addAction(plot8)
-
-        plot9 = QtGui.QAction('&Processos em cada estado no processador', self)        
-        plot9.triggered.connect(lambda: self.plot( memory.plotGraph5() ))
-        self.menuProcess.addAction(plot9)
+        self.createMenuProcesses()
 
 
         self.generateReport = self.myQMenuBar.addMenu('Gerar relatório')
-
-
-        self.createMenuProcesses()
 
         # set the layout
         self.layout = QtGui.QVBoxLayout()
@@ -113,19 +97,23 @@ class Window(QtGui.QDialog):
         self.setLayout(self.layout)
 
     def createMenuProcesses(self):
-        #### Cria menu
-        self.menuProcessStatistics = self.myQMenuBar.addMenu('Estatística de processos')
+        self.menuProcess = self.myQMenuBar.addMenu('Processo')
+
+        plot7 = QtGui.QAction('&Listar processos ativos', self)        
+        plot7.triggered.connect(lambda: self.listviewProc( self.man.listProcesses() ))
+        self.menuProcess.addAction(plot7)
+
         # Gráfico: total x usado
         plot1 = QtGui.QAction('&Total x Usado', self)  
         thread = processes.CPUListener
         plot1.triggered.connect(lambda: self.connectThreadProcesses( thread ))
-        self.menuProcessStatistics.addAction(plot1)
+        self.menuProcess.addAction(plot1)
 
         # Gráfico: quantidade de processos em cada estado (pronto, suspenso, rodando, etc)
         plot2 = QtGui.QAction('&Processos por estado', self)  
         thread1 = processes.ProcessStatusListener      
         plot2.triggered.connect(lambda: self.connectThreadProcesses( thread1 ))
-        self.menuProcessStatistics.addAction(plot2)
+        self.menuProcess.addAction(plot2)
 
     def connectThread(self):
         self.thread = page_faults.PageFaultListener()
