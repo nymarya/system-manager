@@ -2,7 +2,6 @@ USER       PID COMMAND
 root         1 /sbin/init splash
 root         2 [kthreadd]
 root         4 [kworker/0:0H]
-root         5 [kworker/u8:0]
 root         6 [mm_percpu_wq]
 root         7 [ksoftirqd/0]
 root         8 [rcu_sched]
@@ -47,7 +46,6 @@ root        55 [ecryptfs-kthrea]
 root        97 [kthrotld]
 root        98 [acpi_thermal_pm]
 root       103 [ipv6_addrconf]
-root       124 [kworker/u8:3]
 root       133 [charger_manager]
 root       180 [scsi_eh_0]
 root       181 [scsi_tmf_0]
@@ -235,7 +233,6 @@ jainebu+  4478 /snap/vscode/69/usr/share/code/code /snap/vscode/69/usr/share/cod
 jainebu+  4500 /snap/vscode/69/usr/share/code/code /snap/vscode/69/usr/share/code/resources/app/out/bootstrap-fork --type=watcherService
 jainebu+  4590 python completion.py
 jainebu+  4593 /usr/bin/python jedi/evaluate/compiled/subprocess/__main__.py  2.7.14
-jainebu+  4621 /opt/google/chrome/chrome --type=zygote
 jainebu+  4643 /usr/lib/x86_64-linux-gnu/deja-dup/deja-dup-monitor
 www-data  5042 /usr/sbin/apache2 -k start
 www-data  5043 /usr/sbin/apache2 -k start
@@ -245,32 +242,31 @@ www-data  5046 /usr/sbin/apache2 -k start
 root      5056 /usr/sbin/cupsd -l
 root      5057 /usr/sbin/cups-browsed
 jainebu+  5356 /snap/vscode/69/usr/share/code/code /snap/vscode/69/usr/share/code/resources/app/extensions/html-language-features/server/dist/htmlServerMain --node-ipc --clientProcessId=4478
-root      5851 [kworker/3:0]
-jainebu+  5896 /opt/google/chrome/chrome --type=zygote
 jainebu+  6272 /opt/google/chrome/chrome --type=zygote
-root      6332 [kworker/1:0]
-jainebu+  6347 /opt/google/chrome/chrome --type=zygote
-jainebu+  6412 /opt/google/chrome/chrome --type=zygote
 jainebu+  6456 bash
-root      6474 [kworker/2:0]
-root      6592 [kworker/u8:2]
 jainebu+  6833 evince /home/jainebudke/Downloads/Aula02___DIM0615.0___2018.2___Processos___Conceitos (1).pdf
 jainebu+  6841 /usr/lib/evince/evinced
 root      6882 [kworker/2:2]
-root      6931 [kworker/0:0]
 root      6987 [kworker/u8:1]
-root      7115 [kworker/0:2]
-root      7125 [kworker/2:3]
 root      7209 [kworker/1:1]
-root      7276 [kworker/3:2]
 root      7278 [kworker/u8:4]
-root      7620 [kworker/0:1]
-jainebu+  7692 /opt/google/chrome/chrome --type=zygote
 root      7719 [kworker/0:3]
-root      7722 [kworker/1:2]
-root      7825 [kworker/3:1]
-root      7844 [kworker/3:3]
-root      7929 [kworker/2:1]
-jainebu+  7953 python3 manager.py
-jainebu+  7963 /bin/sh -c ps -eo user,pid,command > processes.txt
-jainebu+  7964 ps -eo user,pid,command
+jainebu+  8252 /bin/bash
+root      8345 [kworker/u8:0]
+root      8625 [kworker/u8:2]
+root      8628 [kworker/2:1]
+root      8633 [kworker/0:0]
+root      8639 [kworker/1:0]
+root      8692 [kworker/3:0]
+root      8819 [kworker/3:2]
+root      9015 [kworker/u8:3]
+root      9016 [kworker/2:0]
+root      9069 [kworker/0:1]
+jainebu+  9116 /opt/google/chrome/chrome --type=zygote
+root      9133 [kworker/1:2]
+jainebu+  9255 /opt/google/chrome/chrome --type=zygote
+root      9316 [kworker/2:3]
+root      9323 [kworker/3:1]
+jainebu+  9336 python3 manager.py
+jainebu+  9345 /bin/sh -c ps -eo user,pid,command > processes.txt
+jainebu+  9346 ps -eo user,pid,command

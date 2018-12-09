@@ -17,6 +17,7 @@ class ManagerProcesses:
         return text
         
 
+
     def killProcess(self, pid, com, index):
         command = "kill -9 " + str(pid) 
         try:
@@ -49,3 +50,20 @@ class ManagerProcesses:
         message = "INFORMAÇÕES DO PROCESSO: \n PID: "+infos[0]+" \n Memória usada (número decimal de kb): "+infos[1]+"\n Usuário: "+infos[2]+" \n Comando: "+infos[3]+" \n PPID: "+infos[4]+" \n Início da execução às: "+infos[5]
         mb = QtGui.QMessageBox ("",message,QtGui.QMessageBox.Information,QtGui.QMessageBox.Ok,0,0)
         mb.exec_()
+
+
+    def treeProcess(self, pid, com, index):
+        command = "pstree -p "+str(pid)+" > tree.txt"
+        subprocess.call([command], shell=True)
+
+        # abre arquivo com informacoes
+        arc = open('tree.txt', 'r')
+        # le cada linha do arquivo
+        text = arc.read()
+        # fecha arquivo
+        arc.close()
+        
+        mb = QtGui.QMessageBox ("",text,QtGui.QMessageBox.Information,QtGui.QMessageBox.Ok,0,0)
+        mb.exec_()
+
+

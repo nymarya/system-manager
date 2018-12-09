@@ -81,7 +81,6 @@ class Window(QtGui.QDialog):
         plot6 = QtGui.QAction('Faltas de páginas por processos', self)
         plot6.triggered.connect(self.connectThread)        
         self.menuMemoria.addAction(plot6)
-        
 
 
         self.menuProcess = self.myQMenuBar.addMenu('Processo')
@@ -115,8 +114,8 @@ class Window(QtGui.QDialog):
         self.thread.start()
         signal = QtCore.SIGNAL("output(PyQt_PyObject)")
         self.connect(self.thread, signal, self.listview)
-        
-        
+       
+
     def formatPsResult(self, line):
         """ Format each line result from the ps command
 
@@ -159,7 +158,7 @@ class Window(QtGui.QDialog):
         # initiate table
         self.table.setWindowTitle("Gerenciador de processos")
         self.table.setRowCount(len(data))
-        self.table.setColumnCount(5)
+        self.table.setColumnCount(6)
         
         
 
@@ -190,8 +189,13 @@ class Window(QtGui.QDialog):
             self.table.setCellWidget(i,4, buttonInfos)
             buttonInfos.clicked.connect(partial(self.man.infoProcess, pid, command, i))
 
+            # tree button
+            buttonTree = QtGui.QPushButton("Árvore")
+            self.table.setCellWidget(i,5, buttonTree)
+            buttonTree.clicked.connect(partial(self.man.treeProcess, pid, command, i))
 
-        
+            
+
         # show table
         self.layout.addWidget(self.table)
         self.layout.removeWidget(self.canvas)
