@@ -18,9 +18,14 @@ class ManagerProcesses:
         
 
     def killProcess(self, pid, com, index):
-        subprocess.call(["kill -9 23467"], shell=True)
-        mb = QtGui.QMessageBox ("","Processo excluído com sucesso",QtGui.QMessageBox.Warning,QtGui.QMessageBox.Ok,0,0)
-        mb.exec_()
+        command = "kill -9 " + str(pid) 
+        result = subprocess.call([command], shell=True)
+        if( result != None ):
+            mb = QtGui.QMessageBox ("","Processo morto com sucesso",QtGui.QMessageBox.Warning,QtGui.QMessageBox.Ok,0,0)
+            mb.exec_()
+        else:
+            mb = QtGui.QMessageBox ("","Não foi possível matar processo",QtGui.QMessageBox.Warning,QtGui.QMessageBox.Ok,0,0)
+            mb.exec_()
 
 
     def infoProcess(self, pid, com, index):
