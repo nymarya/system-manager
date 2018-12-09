@@ -69,9 +69,6 @@ root       287 [loop2]
 root       291 [loop3]
 root       308 [loop4]
 root       309 [loop5]
-root       315 [irq/128-mei_me]
-root       345 [kworker/u9:0]
-root       346 [kworker/u9:1]
 root       347 [cfg80211]
 root       374 [ath10k_wq]
 root       375 [ath10k_aux_wq]
@@ -119,7 +116,6 @@ root      1132 /usr/lib/upower/upowerd
 gdm       1150 /usr/bin/Xwayland :1024 -rootless -terminate -core -listen 4 -listen 5 -displayfd 6
 gdm       1161 /usr/lib/at-spi2-core/at-spi-bus-launcher
 gdm       1176 /usr/bin/dbus-daemon --config-file=/usr/share/defaults/at-spi2/accessibility.conf --nofork --print-address 3
-root      1177 /sbin/dhclient -d -q -sf /usr/lib/NetworkManager/nm-dhcp-helper -pf /run/dhclient-wlp2s0.pid -lf /var/lib/NetworkManager/dhclient-f550bb3e-74a5-4c28-a9bb-23daa584a501-wlp2s0.lease -cf /var/lib/NetworkManager/dhclient-wlp2s0.conf wlp2s0
 gdm       1179 /usr/lib/at-spi2-core/at-spi2-registryd --use-gnome-session
 gdm       1187 /usr/bin/pulseaudio --daemonize=no
 rtkit     1188 /usr/lib/rtkit/rtkit-daemon
@@ -221,7 +217,6 @@ jainebu+  3786 /opt/google/chrome/chrome --type=-broker
 jainebu+  4128 /opt/google/chrome/chrome --type=zygote
 jainebu+  4152 /usr/lib/gnome-terminal/gnome-terminal-server
 jainebu+  4170 bash
-jainebu+  4326 /opt/google/chrome/chrome --type=zygote
 jainebu+  4344 update-notifier
 jainebu+  4381 /snap/vscode/69/usr/share/code/code
 jainebu+  4384 /snap/vscode/69/usr/share/code/code --type=zygote --no-sandbox
@@ -246,27 +241,31 @@ jainebu+  6272 /opt/google/chrome/chrome --type=zygote
 jainebu+  6456 bash
 jainebu+  6833 evince /home/jainebudke/Downloads/Aula02___DIM0615.0___2018.2___Processos___Conceitos (1).pdf
 jainebu+  6841 /usr/lib/evince/evinced
-root      6882 [kworker/2:2]
-root      6987 [kworker/u8:1]
-root      7209 [kworker/1:1]
-root      7278 [kworker/u8:4]
 root      7719 [kworker/0:3]
 jainebu+  8252 /bin/bash
-root      8345 [kworker/u8:0]
-root      8625 [kworker/u8:2]
-root      8628 [kworker/2:1]
-root      8633 [kworker/0:0]
-root      8639 [kworker/1:0]
 root      8692 [kworker/3:0]
-root      8819 [kworker/3:2]
-root      9015 [kworker/u8:3]
-root      9016 [kworker/2:0]
-root      9069 [kworker/0:1]
-jainebu+  9116 /opt/google/chrome/chrome --type=zygote
-root      9133 [kworker/1:2]
-jainebu+  9255 /opt/google/chrome/chrome --type=zygote
-root      9316 [kworker/2:3]
-root      9323 [kworker/3:1]
-jainebu+  9336 python3 manager.py
-jainebu+  9345 /bin/sh -c ps -eo user,pid,command > processes.txt
-jainebu+  9346 ps -eo user,pid,command
+jainebu+  9448 /opt/google/chrome/chrome --type=zygote
+root      9914 [kworker/2:2]
+jainebu+ 10036 /opt/google/chrome/chrome --type=zygote
+root     10427 [kworker/1:0]
+root     10432 [kworker/2:3]
+root     10659 [kworker/u8:6]
+root     10681 [kworker/u8:28]
+root     10691 [kworker/u8:38]
+root     10702 [irq/128-mei_me]
+root     10705 [kworker/u9:0]
+root     10708 [kworker/u9:2]
+root     10849 /sbin/dhclient -d -q -sf /usr/lib/NetworkManager/nm-dhcp-helper -pf /run/dhclient-wlp2s0.pid -lf /var/lib/NetworkManager/dhclient-f550bb3e-74a5-4c28-a9bb-23daa584a501-wlp2s0.lease -cf /var/lib/NetworkManager/dhclient-wlp2s0.conf wlp2s0
+jainebu+ 10976 /opt/google/chrome/chrome --type=zygote
+root     11194 [kworker/3:1]
+root     11198 [kworker/2:0]
+root     11203 [kworker/0:1]
+root     11220 [kworker/1:1]
+root     11377 [kworker/u8:0]
+root     11382 [kworker/2:1]
+root     11621 [kworker/3:2]
+root     11677 [kworker/0:0]
+root     11680 [kworker/1:2]
+jainebu+ 11729 python3 manager.py
+jainebu+ 11738 /bin/sh -c ps -eo user,pid,command > processes.txt
+jainebu+ 11739 ps -eo user,pid,command

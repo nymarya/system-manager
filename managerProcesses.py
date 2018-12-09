@@ -62,8 +62,28 @@ class ManagerProcesses:
         text = arc.read()
         # fecha arquivo
         arc.close()
-        
+
         mb = QtGui.QMessageBox ("",text,QtGui.QMessageBox.Information,QtGui.QMessageBox.Ok,0,0)
         mb.exec_()
 
+    def searchProcess( self, inputSearch ):
+        pid = inputSearch.text()
+
+        # verifica se existe processo com esse PID
+        command = "ps -p "+pid+" > pidSearch.txt"
+        subprocess.call([command], shell=True)
+
+        # abre arquivo com informacoes
+        arc = open('pidSearch.txt', 'r')
+        # le cada linha do arquivo
+        text = arc.readlines()
+        # fecha arquivo
+        arc.close()
+        
+        # se arquivo tiver duas linhas, encontrou processo com PID
+        if( len(text) == 2 ):
+            self.infoProcess(pid, "", "")
+        else: 
+            mb = QtGui.QMessageBox ("","Não há processo com esse PID",QtGui.QMessageBox.Information,QtGui.QMessageBox.Ok,0,0)
+            mb.exec_()
 

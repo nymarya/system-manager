@@ -142,10 +142,22 @@ class Window(QtGui.QDialog):
 
         self.processesData = data
 
-        btnShowTree = QtGui.QPushButton("Exibir árvore de processos")
-        self.layout.addWidget(btnShowTree)
+
+        # busca por PID
+        inputSearch = QLineEdit()
+        inputSearch.setFixedWidth(200)
+        
+        btnSearch = QtGui.QPushButton("Buscar")
+        btnSearch.setFixedWidth(80)
+
+        btnSearch.clicked.connect( lambda: self.man.searchProcess( inputSearch ) )
+
+
+        self.layout.addWidget(inputSearch)
+        self.layout.addWidget(btnSearch)
 
       
+        # inicio config tabela
         if( self.table == None or self.layout.indexOf(self.table) == -1):
             self.table = QtGui.QTableWidget()
         else:
