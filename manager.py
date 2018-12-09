@@ -2,6 +2,7 @@ import sys
 from PyQt4 import QtGui, QtCore
 from matplotlib.backends.backend_qt4agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.backends.backend_qt4agg import NavigationToolbar2QT as NavigationToolbar
+import matplotlib.pyplot as plt
 from matplotlib.figure import Figure
 
 from PyQt4.QtGui import * 
@@ -32,8 +33,8 @@ class Window(QtGui.QDialog):
 
         self.table = None
         self.tableItem = None
-
-
+        self.inputSearch = None
+        self.btnSearch = None
 
         # a figure instance to plot on
         self.figure = Figure()
@@ -46,7 +47,7 @@ class Window(QtGui.QDialog):
         # it takes the Canvas widget and a parent
         self.toolbar = NavigationToolbar(self.canvas, self)
 
-        self.thread = processes.PageFaultListener()
+        self.thread = page_faults.PageFaultListener()
 
         #### Cria menu
         self.myQMenuBar = QtGui.QMenuBar(self)
@@ -83,39 +84,53 @@ class Window(QtGui.QDialog):
         self.menuMemoria.addAction(plot6)
 
 
+        self.createMenuProcesses()
+
+
+        self.generateReport = self.myQMenuBar.addMenu('Gerar relatório')
+
+        # set the layout
+        self.layout = QtGui.QVBoxLayout()
+        self.layout.addWidget(self.myQMenuBar)    
+        self.layout.addWidget(self.toolbar)
+        self.layout.addWidget(self.canvas)
+        self.setLayout(self.layout)
+
+    def createMenuProcesses(self):
         self.menuProcess = self.myQMenuBar.addMenu('Processo')
-     
 
         plot7 = QtGui.QAction('&Listar processos ativos', self)        
         plot7.triggered.connect(lambda: self.listviewProc( self.man.listProcesses() ))
         self.menuProcess.addAction(plot7)
 
-        plot8 = QtGui.QAction('&Processador total x Processador usado', self)        
-        plot8.triggered.connect(lambda: self.plot( memory.plotGraph5() ))
-        self.menuProcess.addAction(plot8)
+        # Gráfico: total x usado
+        plot1 = QtGui.QAction('&Total x Usado', self)  
+        thread = processes.CPUListener
+        plot1.triggered.connect(lambda: self.connectThreadProcesses( thread ))
+        self.menuProcess.addAction(plot1)
 
-        plot9 = QtGui.QAction('&Processos em cada estado no processador', self)        
-        plot9.triggered.connect(lambda: self.plot( memory.plotGraph5() ))
-        self.menuProcess.addAction(plot9)
-
-
-        self.generateReport = self.myQMenuBar.addMenu('Gerar relatório')
-
-
-        # set the layout
-        self.layout = QtGui.QVBoxLayout()
-        self.layout.addWidget(self.myQMenuBar)
-        self.layout.addWidget(self.toolbar)
-        self.layout.addWidget(self.canvas)
-        self.setLayout(self.layout)
+        # Gráfico: quantidade de processos em cada estado (pronto, suspenso, rodando, etc)
+        plot2 = QtGui.QAction('&Processos por estado', self)  
+        thread1 = processes.ProcessStatusListener      
+        plot2.triggered.connect(lambda: self.connectThreadProcesses( thread1 ))
+        self.menuProcess.addAction(plot2)
 
     def connectThread(self):
-        self.thread = processes.PageFaultListener()
+        self.thread = page_faults.PageFaultListener()
         self.thread.start()
         signal = QtCore.SIGNAL("output(PyQt_PyObject)")
         self.connect(self.thread, signal, self.listview)
-       
 
+    def connectThreadProcesses(self, thread):
+        try:
+            self.threadProcesses.stop()
+        except:
+            pass
+        self.threadProcesses = thread()
+        self.threadProcesses.start()
+        signal = QtCore.SIGNAL("output(PyQt_PyObject)")
+        self.connect(self.threadProcesses, signal, self.plot)
+        
     def formatPsResult(self, line):
         """ Format each line result from the ps command
 
@@ -139,31 +154,31 @@ class Window(QtGui.QDialog):
 
 
     def listviewProc(self, data):
-
+        if( hasattr(self, 'threadProcesses')):
+            self.threadProcesses.stop()
+        self.thread.stop()
+        
         self.processesData = data
 
-
         # busca por PID
-        inputSearch = QLineEdit()
-        inputSearch.setFixedWidth(200)
+        if( not hasattr(self, 'inputSearch') or self.inputSearch == None):
+            self.inputSearch = QLineEdit()
+            self.inputSearch.setFixedWidth(200)
         
-        btnSearch = QtGui.QPushButton("Buscar")
-        btnSearch.setFixedWidth(80)
+            self.btnSearch = QtGui.QPushButton("Buscar")
+            self.btnSearch.setFixedWidth(80)
 
-        btnSearch.clicked.connect( lambda: self.man.searchProcess( inputSearch ) )
-
-
-        self.layout.addWidget(inputSearch)
-        self.layout.addWidget(btnSearch)
-
+            self.btnSearch.clicked.connect( lambda: self.man.searchProcess( self.inputSearch ) )
+        else:
+            self.inputSearch.show()
+            self.btnSearch.show()
+        
       
         # inicio config tabela
         if( self.table == None or self.layout.indexOf(self.table) == -1):
             self.table = QtGui.QTableWidget()
         else:
             self.table.clear()
-
-
 
         self.tableItem 	= QTableWidgetItem()
     
@@ -172,9 +187,6 @@ class Window(QtGui.QDialog):
         self.table.setRowCount(len(data))
         self.table.setColumnCount(6)
         
-        
-
-
         for i,text in enumerate(data):
 
             txtSplit = " ".join(text.split()) 
@@ -204,20 +216,24 @@ class Window(QtGui.QDialog):
             # tree button
             buttonTree = QtGui.QPushButton("Árvore")
             self.table.setCellWidget(i,5, buttonTree)
-            buttonTree.clicked.connect(partial(self.man.treeProcess, pid, command, i))
-
-            
+            buttonTree.clicked.connect(partial(self.man.treeProcess, pid, command, i))         
 
         # show table
-        self.layout.addWidget(self.table)
         self.layout.removeWidget(self.canvas)
-
-
+        if( self.table != None and self.layout.indexOf(self.table) != -1):
+            self.table.show()
+        else:
+            self.layout.addWidget(self.inputSearch)
+            self.layout.addWidget(self.btnSearch)
+            self.layout.addWidget(self.table)
 
 
     def listview(self, data):
         '''show list with page faults'''
+        if( hasattr(self, 'threadProcesses')):
+            self.threadProcesses.stop()
 
+        self.clearScreen()
         if( self.listWidget == None or self.layout.indexOf(self.listWidget) == -1):
             self.listWidget = QtGui.QListWidget()
         else:
@@ -239,18 +255,30 @@ class Window(QtGui.QDialog):
             self.layout.addWidget(self.listWidget)
 
 
-
-
-
     def plot(self, data):
         ''' plot some random stuff 
             @see: https://stackoverflow.com/questions/12459811/how-to-embed-matplotlib-in-pyqt-for-dummies
         '''
-        self.thread.stop()
-        if( self.listWidget != None):
-            self.listWidget.hide()
-            self.layout.addWidget(self.canvas)
+        # Para a thread de processos se o dado recebido não for float (CPU)
+        # Ou se receber for mais de 2 objetos (Status)
+        if( not isinstance(data[0], float) and len(data[0]) == 2 and hasattr(self, 'threadProcesses')):
+            self.threadProcesses.stop()
 
+        self.thread.stop()
+        self.clearScreen()
+
+        if(hasattr(self, 'threadProcesses') and self.threadProcesses.isCPU and isinstance(data[0], float) ):
+            self.plotCPU(data)
+        else:
+            self.plotData(data)
+
+        # refresh canvas
+        self.canvas.draw()
+
+    def plotData(self, data):
+
+        for ax in self.figure.axes:
+            self.figure.delaxes(ax)
         # create an axis
         ax = self.figure.add_subplot(111)
 
@@ -260,14 +288,70 @@ class Window(QtGui.QDialog):
         # plot data 
         labels = data[0]
         titles = data[1]
+        
         color = ['lightblue', 'green']
+        # If the colors are sent
+        if(len(data)> 2):
+            color = data[2]
         explode = (0.1, 0)  # somente explode primeiro pedaço
         total = sum(titles)
-        ax.pie(titles, explode=explode, labels=labels, colors=color, autopct=lambda p: '{:.0f}'.format(p * total / 100), shadow=True, startangle=90)
+        ax.pie(titles, explode=None, labels=labels, colors=color, autopct=lambda p: '{:.0f}'.format(p * total / 100), shadow=True, startangle=90)
 
 
-        # refresh canvas
-        self.canvas.draw()
+    def plotCPU(self, data):
+        ''' plot cpu data
+            @see: https://stackoverflow.com/questions/12459811/how-to-embed-matplotlib-in-pyqt-for-dummies
+        '''
+
+        for ax in self.figure.axes:
+                self.figure.delaxes(ax)
+
+        color = ['orange', 'blue']
+        
+        # multicore
+        if(len(data) == 4):
+            
+            ax1 = self.figure.add_subplot(221)
+            # discards the old graph
+            ax1.clear()
+            ax1.pie([100.0-data[0], data[0]], colors=color, autopct=lambda p: '{:.0f}%'.format(p))
+
+            ax2 = self.figure.add_subplot(222)
+            # discards the old graph
+            ax2.clear()
+            ax2.pie([100.0-data[1], data[1]], colors=color, autopct=lambda p: '{:.0f}%'.format(p))
+
+            ax3 = self.figure.add_subplot(223)
+            # discards the old graph
+            ax3.clear()
+            ax3.pie([100.0-data[2], data[2]], colors=color, autopct=lambda p: '{:.0f}%'.format(p))
+
+            ax4 = self.figure.add_subplot(224)
+            # discards the old graph
+            ax4.clear()
+            ax4.pie([100.0-data[3], data[3]], colors=color, autopct=lambda p: '{:.0f}%'.format(p))
+
+        elif (len(data) == 2 ):
+            ax1 = self.figure.add_subplot(211)
+            # discards the old graph
+            ax1.clear()
+            ax1.pie([100.0-data[0], data[0]], colors=color, autopct=lambda p: '{:.0f}%'.format(p))
+
+            ax2 = self.figure.add_subplot(212)
+            # discards the old graph
+            ax2.clear()
+            ax2.pie([100.0-data[1], data[1]], colors=color, autopct=lambda p: '{:.0f}%'.format(p))
+
+    def clearScreen(self):
+        if( self.listWidget != None):
+            self.listWidget.hide()
+            self.layout.addWidget(self.canvas)
+        elif( self.table != None and self.layout.indexOf(self.table) != -1):
+            self.inputSearch.hide()
+            self.btnSearch.hide()
+            self.table.hide()
+            self.layout.addWidget(self.canvas)
+
 
 if __name__ == '__main__':
     app = QtGui.QApplication(sys.argv)

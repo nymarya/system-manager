@@ -1,2 +1,0 @@
-  PID MEMORY USER     COMMAND          PPID STIME
-11680      0 root     kworker/1:2         2 14:30
