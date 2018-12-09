@@ -1,5 +1,5 @@
 import sys
-from PyQt4 import QtGui
+from PyQt4 import QtGui, QtCore
 from matplotlib.backends.backend_qt4agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.backends.backend_qt4agg import NavigationToolbar2QT as NavigationToolbar
 from matplotlib.figure import Figure
@@ -7,6 +7,8 @@ from matplotlib.figure import Figure
 import random
 import memory
 from css import MENU_CSS
+import processes
+import page_faults
 
 class Window(QtGui.QDialog):
 
@@ -26,6 +28,8 @@ class Window(QtGui.QDialog):
         # this is the Navigation widget
         # it takes the Canvas widget and a parent
         self.toolbar = NavigationToolbar(self.canvas, self)
+
+        self.thread = page_faults.PageFaultListener()
 
         #### Cria menu
         self.myQMenuBar = QtGui.QMenuBar(self)
@@ -57,9 +61,10 @@ class Window(QtGui.QDialog):
         self.menuMemoria.addAction(plot5)
 
         ##plota grafico 5
-        plot6 = QtGui.QAction('Faltas de páginas por processos', self)        
-        plot6.triggered.connect(lambda: self.listview( memory.pageFaults() ))
+        plot6 = QtGui.QAction('Faltas de páginas por processos', self)
+        plot6.triggered.connect(self.connectThread)        
         self.menuMemoria.addAction(plot6)
+        
 
         self.createMenuProcesses()
 
@@ -78,17 +83,64 @@ class Window(QtGui.QDialog):
         plot1.triggered.connect(lambda: self.plot( memory.plotGraph1() ))
         self.menuProcessStatistics.addAction(plot1)
 
+        # Gráfico: quantidade de processos em cada estado (pronto, suspenso, rodando, etc)
+        plot2 = QtGui.QAction('&Processos por estado', self)  
+        thread = processes.ProcessStatusListener()      
+        plot2.triggered.connect(lambda: self.connectThreadProcesses( thread ))
+        self.menuProcessStatistics.addAction(plot2)
+
+    def connectThread(self):
+        self.thread = page_faults.PageFaultListener()
+        self.thread.start()
+        signal = QtCore.SIGNAL("output(PyQt_PyObject)")
+        self.connect(self.thread, signal, self.listview)
+
+    def connectThreadProcesses(self, thread):
+        self.threadProcesses = thread
+        self.threadProcesses.start()
+        signal = QtCore.SIGNAL("output(PyQt_PyObject)")
+        self.connect(self.threadProcesses, signal, self.plot)
+        
+    def formatPsResult(self, line):
+        """ Format each line result from the ps command
+
+        @param line Line from ps command
+        @return 
+        """
+        #separate the values
+        texts = line.split()
+
+        items = []
+        ## format process name
+        texts[1] = ' '.join(texts[1:len(texts)-2]).ljust(50)
 
         
+        myPageFaultsQWidget = page_faults.PageFaultsQWidget()
+        myPageFaultsQWidget.setTextPID(texts[0])
+        myPageFaultsQWidget.setTextCommand(texts[1])
+        myPageFaultsQWidget.setTextMinFlt(texts[len(texts)-2])
+        myPageFaultsQWidget.setTextMajFlt(texts[len(texts)-1])
+        return myPageFaultsQWidget
+
     def listview(self, data):
         '''show list with page faults'''
-        self.listWidget = QtGui.QListWidget()
-	
-        for text in data:
-            self.listWidget.addItem(text)
+        self.threadProcesses.stop()
+        if( self.listWidget == None or self.layout.indexOf(self.listWidget) == -1):
+            self.listWidget = QtGui.QListWidget()
+        else:
+            self.listWidget.clear()
+        
+        for i,text in enumerate(data):
+            item = self.formatPsResult(text)
+
+            myQListWidgetItem = QtGui.QListWidgetItem(self.listWidget)
+            # Set size hint
+            myQListWidgetItem.setSizeHint(item.sizeHint())
+            self.listWidget.addItem(myQListWidgetItem)
+            self.listWidget.setItemWidget(myQListWidgetItem, item)
             
         self.layout.removeWidget(self.canvas)
-        if( self.listWidget != None and self.layout.indexOf(self.listWidget) != -1):
+        if( self.listWidget != None and self.layout.indexOf(self.listWidget) != -1 and not self.thread.exiting):
             self.listWidget.show()
         else:
             self.layout.addWidget(self.listWidget)
@@ -97,7 +149,11 @@ class Window(QtGui.QDialog):
         ''' plot some random stuff 
             @see: https://stackoverflow.com/questions/12459811/how-to-embed-matplotlib-in-pyqt-for-dummies
         '''
-        
+        if(len(data[0]) == 2):
+            self.threadProcesses.stop()
+            print('stop')
+
+        self.thread.stop()
         if( self.listWidget != None):
             self.listWidget.hide()
             self.layout.addWidget(self.canvas)
@@ -111,10 +167,14 @@ class Window(QtGui.QDialog):
         # plot data 
         labels = data[0]
         titles = data[1]
+        print(titles)
         color = ['lightblue', 'green']
+        # If the colors are sent
+        if(len(data)> 2):
+            color = data[2]
         explode = (0.1, 0)  # somente explode primeiro pedaço
         total = sum(titles)
-        ax.pie(titles, explode=explode, labels=labels, colors=color, autopct=lambda p: '{:.0f}'.format(p * total / 100), shadow=True, startangle=90)
+        ax.pie(titles, explode=None, labels=labels, colors=color, autopct=lambda p: '{:.0f}'.format(p * total / 100), shadow=True, startangle=90)
 
 
         # refresh canvas

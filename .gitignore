@@ -102,3 +102,9 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+
+# temp file
+*.txt
+
+#ide file
+.vscode/
