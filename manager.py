@@ -34,8 +34,6 @@ class Window(QtGui.QDialog):
         self.table = None
         self.tableItem = None
 
-
-
         # a figure instance to plot on
         self.figure = Figure()
 
@@ -157,7 +155,6 @@ class Window(QtGui.QDialog):
 
         self.processesData = data
 
-
         # busca por PID
         inputSearch = QLineEdit()
         inputSearch.setFixedWidth(200)
@@ -167,18 +164,14 @@ class Window(QtGui.QDialog):
 
         btnSearch.clicked.connect( lambda: self.man.searchProcess( inputSearch ) )
 
-
         self.layout.addWidget(inputSearch)
         self.layout.addWidget(btnSearch)
-
       
         # inicio config tabela
         if( self.table == None or self.layout.indexOf(self.table) == -1):
             self.table = QtGui.QTableWidget()
         else:
             self.table.clear()
-
-
 
         self.tableItem 	= QTableWidgetItem()
     
@@ -187,9 +180,6 @@ class Window(QtGui.QDialog):
         self.table.setRowCount(len(data))
         self.table.setColumnCount(6)
         
-        
-
-
         for i,text in enumerate(data):
 
             txtSplit = " ".join(text.split()) 
@@ -219,20 +209,17 @@ class Window(QtGui.QDialog):
             # tree button
             buttonTree = QtGui.QPushButton("Árvore")
             self.table.setCellWidget(i,5, buttonTree)
-            buttonTree.clicked.connect(partial(self.man.treeProcess, pid, command, i))
-
-            
+            buttonTree.clicked.connect(partial(self.man.treeProcess, pid, command, i))         
 
         # show table
         self.layout.addWidget(self.table)
         self.layout.removeWidget(self.canvas)
 
 
-
-
     def listview(self, data):
         '''show list with page faults'''
-        self.threadProcesses.stop()
+        if( not isinstance(data[0], float) and len(data[0]) == 2 and hasattr(self, 'threadProcesses')):
+            self.threadProcesses.stop()
         if( self.listWidget == None or self.layout.indexOf(self.listWidget) == -1):
             self.listWidget = QtGui.QListWidget()
         else:
@@ -270,8 +257,11 @@ class Window(QtGui.QDialog):
         if( self.listWidget != None):
             self.listWidget.hide()
             self.layout.addWidget(self.canvas)
+        elif( self.table != None):
+            self.table.hide()
+            self.layout.addWidget(self.canvas)
 
-        if(hasattr(self, 'threadProcesses') and self.threadProcesses.isCPU):
+        if(hasattr(self, 'threadProcesses') and self.threadProcesses.isCPU and isinstance(data[0], float) ):
             self.plotCPU(data)
         else:
             self.plotData(data)
