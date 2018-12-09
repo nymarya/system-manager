@@ -33,6 +33,8 @@ class Window(QtGui.QDialog):
 
         self.table = None
         self.tableItem = None
+        self.inputSearch = None
+        self.btnSearch = None
 
         # a figure instance to plot on
         self.figure = Figure()
@@ -152,20 +154,25 @@ class Window(QtGui.QDialog):
 
 
     def listviewProc(self, data):
-
+        if( hasattr(self, 'threadProcesses')):
+            self.threadProcesses.stop()
+        self.thread.stop()
+        
         self.processesData = data
 
         # busca por PID
-        inputSearch = QLineEdit()
-        inputSearch.setFixedWidth(200)
+        if( not hasattr(self, 'inputSearch') or self.inputSearch == None):
+            self.inputSearch = QLineEdit()
+            self.inputSearch.setFixedWidth(200)
         
-        btnSearch = QtGui.QPushButton("Buscar")
-        btnSearch.setFixedWidth(80)
+            self.btnSearch = QtGui.QPushButton("Buscar")
+            self.btnSearch.setFixedWidth(80)
 
-        btnSearch.clicked.connect( lambda: self.man.searchProcess( inputSearch ) )
-
-        self.layout.addWidget(inputSearch)
-        self.layout.addWidget(btnSearch)
+            self.btnSearch.clicked.connect( lambda: self.man.searchProcess( self.inputSearch ) )
+        else:
+            self.inputSearch.show()
+            self.btnSearch.show()
+        
       
         # inicio config tabela
         if( self.table == None or self.layout.indexOf(self.table) == -1):
@@ -212,14 +219,21 @@ class Window(QtGui.QDialog):
             buttonTree.clicked.connect(partial(self.man.treeProcess, pid, command, i))         
 
         # show table
-        self.layout.addWidget(self.table)
         self.layout.removeWidget(self.canvas)
+        if( self.table != None and self.layout.indexOf(self.table) != -1):
+            self.table.show()
+        else:
+            self.layout.addWidget(self.inputSearch)
+            self.layout.addWidget(self.btnSearch)
+            self.layout.addWidget(self.table)
 
 
     def listview(self, data):
         '''show list with page faults'''
-        if( not isinstance(data[0], float) and len(data[0]) == 2 and hasattr(self, 'threadProcesses')):
+        if( hasattr(self, 'threadProcesses')):
             self.threadProcesses.stop()
+
+        self.clearScreen()
         if( self.listWidget == None or self.layout.indexOf(self.listWidget) == -1):
             self.listWidget = QtGui.QListWidget()
         else:
@@ -241,9 +255,6 @@ class Window(QtGui.QDialog):
             self.layout.addWidget(self.listWidget)
 
 
-
-
-
     def plot(self, data):
         ''' plot some random stuff 
             @see: https://stackoverflow.com/questions/12459811/how-to-embed-matplotlib-in-pyqt-for-dummies
@@ -254,12 +265,7 @@ class Window(QtGui.QDialog):
             self.threadProcesses.stop()
 
         self.thread.stop()
-        if( self.listWidget != None):
-            self.listWidget.hide()
-            self.layout.addWidget(self.canvas)
-        elif( self.table != None):
-            self.table.hide()
-            self.layout.addWidget(self.canvas)
+        self.clearScreen()
 
         if(hasattr(self, 'threadProcesses') and self.threadProcesses.isCPU and isinstance(data[0], float) ):
             self.plotCPU(data)
@@ -335,6 +341,16 @@ class Window(QtGui.QDialog):
             # discards the old graph
             ax2.clear()
             ax2.pie([100.0-data[1], data[1]], colors=color, autopct=lambda p: '{:.0f}%'.format(p))
+
+    def clearScreen(self):
+        if( self.listWidget != None):
+            self.listWidget.hide()
+            self.layout.addWidget(self.canvas)
+        elif( self.table != None and self.layout.indexOf(self.table) != -1):
+            self.inputSearch.hide()
+            self.btnSearch.hide()
+            self.table.hide()
+            self.layout.addWidget(self.canvas)
 
 
 if __name__ == '__main__':
