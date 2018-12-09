@@ -61,12 +61,24 @@ class Window(QtGui.QDialog):
         plot6.triggered.connect(lambda: self.listview( memory.pageFaults() ))
         self.menuMemoria.addAction(plot6)
 
+        self.createMenuProcesses()
+
         # set the layout
         self.layout = QtGui.QVBoxLayout()
-        self.layout.addWidget(self.myQMenuBar)
+        self.layout.addWidget(self.myQMenuBar)    
         self.layout.addWidget(self.toolbar)
         self.layout.addWidget(self.canvas)
         self.setLayout(self.layout)
+
+    def createMenuProcesses(self):
+        #### Cria menu
+        self.menuProcessStatistics = self.myQMenuBar.addMenu('Estatística de processos')
+        # Gráfico: total x usado
+        plot1 = QtGui.QAction('&Total x Usado', self)        
+        plot1.triggered.connect(lambda: self.plot( memory.plotGraph1() ))
+        self.menuProcessStatistics.addAction(plot1)
+
+
         
     def listview(self, data):
         '''show list with page faults'''

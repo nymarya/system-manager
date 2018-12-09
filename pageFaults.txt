@@ -1,0 +1,255 @@
+  PID COMMAND                      MINFL  MAJFL
+ 1691 /usr/lib/x86_64-linux-gnu/o 780913    754
+ 1697 /usr/share/code/code --unit 265977    498
+ 2510 /usr/share/code/code --type 3316631   281
+  756 /usr/lib/snapd/snapd          8192    214
+ 1903 /usr/lib/x86_64-linux-gnu/o   4980    143
+ 2149 /usr/lib/x86_64-linux-gnu/o 209369    142
+ 1908 /usr/lib/x86_64-linux-gnu/o   3341    126
+ 2637 /usr/share/code/code --type  36227    123
+  865 /usr/lib/xorg/Xorg -core :0 110859    117
+  279 /lib/systemd/systemd-journa   8535    115
+ 1695 /usr/lib/x86_64-linux-gnu/o   1809     99
+ 2387 /usr/lib/x86_64-linux-gnu/o   5225     93
+    1 /sbin/init splash            11264     88
+ 1537 budgie-panel                 27301     87
+  914 /usr/sbin/nmbd --foreground   1072     75
+ 1619 nautilus-desktop             33026     74
+ 1569 /usr/lib/gnome-online-accou   2052     64
+  953 /usr/sbin/smbd --foreground   1925     60
+  748 /usr/sbin/NetworkManager --   2193     58
+  705 /usr/bin/python3 /usr/bin/n   2966     42
+ 1531 budgie-wm                    35944     40
+ 2802 /usr/bin/gnome-software --g  32316     38
+  713 /usr/sbin/cupsd -l             592     37
+  741 /usr/sbin/ModemManager         667     36
+  744 /sbin/wpa_supplicant -u -s     418     35
+ 1789 /usr/lib/x86_64-linux-gnu/o 250538     34
+  749 /usr/sbin/thermald --no-dae    473     30
+  739 /usr/lib/udisks2/udisksd      1516     29
+ 1711 /usr/share/code/code --type   3755     27
+ 3004 /usr/lib/packagekit/package  99422     25
+  834 /usr/lib/postgresql/10/bin/   8562     25
+ 3103 /usr/lib/x86_64-linux-gnu/o 104403     22
+ 1470 /usr/bin/pulseaudio --start   1704     22
+ 1888 /usr/share/code/code --type 308446     21
+ 1242 /usr/lib/gnome-session/gnom   9870     20
+ 4252 /usr/lib/x86_64-linux-gnu/o 210846     19
+ 3005 /usr/lib/fwupd/fwupd          2103     19
+ 1640 plank                        17286     17
+  743 /usr/lib/accountsservice/ac    685     15
+ 1418 /usr/lib/gnome-settings-dae    498     15
+ 2877 /usr/lib/x86_64-linux-gnu/o 205828     13
+  766 /usr/sbin/cups-browsed         737     13
+  887 /sbin/dhclient -d -q -sf /u    540     13
+ 1306 /usr/lib/ibus/ibus-ui-gtk3    3900     11
+  711 /usr/sbin/rsyslogd -n         1751     11
+ 1500 /usr/lib/colord/colord        2032     10
+  703 /usr/lib/bluetooth/bluetoot    360     10
+ 5425 /usr/lib/x86_64-linux-gnu/o 600018      9
+ 1460 /usr/lib/gnome-settings-dae   2656      9
+ 1464 /usr/lib/gnome-settings-dae    890      9
+  915 /usr/bin/whoopsie -f           839      9
+ 1197 /usr/lib/upower/upowerd        645      8
+ 1583 /usr/lib/gvfs/gvfs-gphoto2-    427      7
+ 2806 /usr/lib/x86_64-linux-gnu/o  14868      6
+ 2852 /usr/lib/x86_64-linux-gnu/o   6689      6
+ 2689 perl -e  use strict; use wa   4933      6
+ 2912 /usr/lib/x86_64-linux-gnu/o  18615      5
+ 2711 /usr/lib/x86_64-linux-gnu/o  15044      5
+ 3678 python completion.py          9681      5
+  317 /lib/systemd/systemd-udevd    2504      5
+ 1406 /usr/lib/gnome-settings-dae   2306      5
+ 1238 /usr/bin/gnome-keyring-daem    318      5
+10863 python3 manager.py           33786      4
+ 1604 budgie-daemon                14987      4
+ 1635 nm-applet --no-indicator      2979      4
+ 1407 /usr/lib/gnome-settings-dae   2768      4
+  613 /lib/systemd/systemd-resolv    646      4
+  615 /lib/systemd/systemd-timesy    561      4
+ 1581 /usr/lib/gnome-online-accou    486      4
+ 1296 /usr/lib/ibus/ibus-dconf       361      4
+  752 avahi-daemon: running [mayr    318      4
+ 1657 /usr/lib/x86_64-linux-gnu/b  16914      3
+ 2763 /usr/lib/x86_64-linux-gnu/o  15937      3
+ 1393 /usr/bin/gnome-screensaver    2236      3
+ 1562 /usr/lib/gvfs/gvfs-goa-volu    371      3
+ 3230 /usr/lib/x86_64-linux-gnu/o 102238      2
+ 2953 /usr/lib/x86_64-linux-gnu/o  15572      2
+ 2740 /usr/lib/x86_64-linux-gnu/o  13636      2
+ 1565 /usr/bin/python3 /usr/lib/b   5731      2
+ 1441 /usr/lib/gnome-settings-dae   2475      2
+ 1310 /usr/lib/ibus/ibus-x11 --ki   2222      2
+  792 /usr/lib/policykit-1/polkit   1622      2
+  822 /usr/sbin/lightdm             1203      2
+ 1617 /usr/lib/x86_64-linux-gnu/i    760      2
+  716 /usr/bin/dbus-daemon --syst    727      2
+ 1555 /usr/lib/gvfs/gvfs-udisks2-    650      2
+ 1741 /usr/lib/x86_64-linux-gnu/g    293      2
+  712 /usr/sbin/irqbalance --fore    247      2
+  876 /sbin/agetty -o -p -- \u --    188      2
+  903 postgres: 10/main: bgworker    177      2
+ 1038 /usr/sbin/smbd --foreground    113      2
+ 5934 /usr/lib/x86_64-linux-gnu/o  74900      1
+ 1639 /usr/bin/python3 /usr/bin/c   8788      1
+ 2968 /bin/bash                     5387      1
+ 1412 /usr/lib/gnome-settings-dae   3483      1
+ 2820 update-notifier               3451      1
+ 1436 /usr/lib/gnome-settings-dae   2344      1
+ 1607 budgie-polkit-dialog          2268      1
+ 1458 /usr/lib/gnome-settings-dae   2246      1
+ 1704 /usr/lib/x86_64-linux-gnu/o   1300      1
+ 1285 /usr/bin/ibus-daemon --daem    879      1
+ 1493 /usr/lib/gnome-settings-dae    806      1
+ 1427 /usr/lib/gnome-settings-dae    749      1
+ 1415 /usr/lib/gnome-settings-dae    728      1
+ 1655 /usr/lib/gvfs/gvfsd-trash -    533      1
+ 1421 /usr/lib/gnome-settings-dae    526      1
+ 1590 /usr/lib/gvfs/gvfs-afc-volu    502      1
+  715 /lib/systemd/systemd-logind    485      1
+ 1472 /usr/lib/gnome-settings-dae    476      1
+ 1597 /usr/lib/gvfs/gvfs-mtp-volu    372      1
+ 1411 /usr/lib/gnome-settings-dae    360      1
+ 1434 /usr/lib/gnome-settings-dae    356      1
+  701 /usr/sbin/cron -f              354      1
+ 1457 /usr/lib/gnome-settings-dae    354      1
+ 1313 /usr/lib/ibus/ibus-portal      353      1
+ 1435 /usr/lib/gnome-settings-dae    331      1
+ 1471 /usr/lib/rtkit/rtkit-daemon    255      1
+  901 postgres: 10/main: autovacu    231      1
+  740 /usr/sbin/acpid                150      1
+ 2977 /usr/share/code/code /usr/s 709026      0
+ 1561 /usr/bin/python3 /usr/lib/b 336115      0
+ 2937 /usr/lib/x86_64-linux-gnu/o 118567      0
+ 7188 /usr/lib/x86_64-linux-gnu/o  72041      0
+ 2987 /usr/share/code/code /usr/s  29402      0
+ 2897 /usr/lib/x86_64-linux-gnu/o  25562      0
+ 8441 /usr/lib/x86_64-linux-gnu/o  21781      0
+ 2838 /usr/lib/x86_64-linux-gnu/o  14545      0
+ 1644 /usr/bin/python3 /usr/bin/c   6681      0
+ 3681 /usr/bin/python jedi/evalua   6232      0
+ 1221 /lib/systemd/systemd --user   1553      0
+ 1287 /usr/bin/dbus-daemon --sess   1528      0
+  900 postgres: 10/main: wal writ   1119      0
+ 1289 /usr/lib/gvfs/gvfsd            642      0
+ 1212 lightdm --session-child 12     624      0
+ 1548 /usr/lib/dconf/dconf-servic    487      0
+ 1317 /usr/lib/at-spi2-core/at-sp    477      0
+ 1632 /usr/lib/gnome-disk-utility    459      0
+ 1294 /usr/lib/gvfs/gvfsd-fuse /r    412      0
+ 1340 /usr/lib/ibus/ibus-engine-s    398      0
+ 1076 /usr/sbin/smbd --foreground    396      0
+ 1325 /usr/lib/at-spi2-core/at-sp    345      0
+ 1322 /usr/bin/dbus-daemon --conf    342      0
+10896 ps -eo pid,command,min_flt,    285      0
+ 2700 /usr/bin/xprop -id 0x340000    168      0
+  898 postgres: 10/main: checkpoi    148      0
+  902 postgres: 10/main: stats co    131      0
+  899 postgres: 10/main: writer p    127      0
+ 1881 /usr/lib/x86_64-linux-gnu/o    124      0
+ 2696 /bin/sh /usr/bin/xdg-screen    102      0
+10895 /bin/sh -c ps -eo pid,comma    100      0
+ 1039 /usr/sbin/smbd --foreground     91      0
+  919 /usr/sbin/kerneloops            63      0
+  917 /usr/sbin/kerneloops --test     61      0
+ 1222 (sd-pam)                        49      0
+ 1385 /usr/bin/ssh-agent /usr/bin     32      0
+  765 avahi-daemon: chroot helper     28      0
+    2 [kthreadd]                       0      0
+    4 [kworker/0:0H]                   0      0
+    6 [mm_percpu_wq]                   0      0
+    7 [ksoftirqd/0]                    0      0
+    8 [rcu_sched]                      0      0
+    9 [rcu_bh]                         0      0
+   10 [migration/0]                    0      0
+   11 [watchdog/0]                     0      0
+   12 [cpuhp/0]                        0      0
+   13 [cpuhp/1]                        0      0
+   14 [watchdog/1]                     0      0
+   15 [migration/1]                    0      0
+   16 [ksoftirqd/1]                    0      0
+   18 [kworker/1:0H]                   0      0
+   19 [cpuhp/2]                        0      0
+   20 [watchdog/2]                     0      0
+   21 [migration/2]                    0      0
+   22 [ksoftirqd/2]                    0      0
+   24 [kworker/2:0H]                   0      0
+   25 [cpuhp/3]                        0      0
+   26 [watchdog/3]                     0      0
+   27 [migration/3]                    0      0
+   28 [ksoftirqd/3]                    0      0
+   30 [kworker/3:0H]                   0      0
+   31 [kdevtmpfs]                      0      0
+   32 [netns]                          0      0
+   33 [rcu_tasks_kthre]                0      0
+   34 [kauditd]                        0      0
+   38 [khungtaskd]                     0      0
+   39 [oom_reaper]                     0      0
+   40 [writeback]                      0      0
+   41 [kcompactd0]                     0      0
+   42 [ksmd]                           0      0
+   43 [khugepaged]                     0      0
+   44 [crypto]                         0      0
+   45 [kintegrityd]                    0      0
+   46 [kblockd]                        0      0
+   48 [ata_sff]                        0      0
+   49 [md]                             0      0
+   50 [edac-poller]                    0      0
+   51 [devfreq_wq]                     0      0
+   52 [watchdogd]                      0      0
+   55 [kswapd0]                        0      0
+   56 [ecryptfs-kthrea]                0      0
+   98 [kthrotld]                       0      0
+   99 [acpi_thermal_pm]                0      0
+  104 [ipv6_addrconf]                  0      0
+  114 [kstrp]                          0      0
+  135 [charger_manager]                0      0
+  188 [scsi_eh_0]                      0      0
+  189 [scsi_tmf_0]                     0      0
+  190 [scsi_eh_1]                      0      0
+  191 [scsi_tmf_1]                     0      0
+  192 [scsi_eh_2]                      0      0
+  193 [scsi_tmf_2]                     0      0
+  195 [scsi_eh_3]                      0      0
+  196 [scsi_tmf_3]                     0      0
+  197 [kworker/u8:3]                   0      0
+  198 [kworker/u8:4]                   0      0
+  201 [kworker/u9:0]                   0      0
+  202 [i915/signal:0]                  0      0
+  203 [i915/signal:1]                  0      0
+  204 [i915/signal:2]                  0      0
+  205 [i915/signal:4]                  0      0
+  209 [kworker/1:1H]                   0      0
+  212 [kworker/2:1H]                   0      0
+  213 [kworker/0:1H]                   0      0
+  233 [jbd2/sda2-8]                    0      0
+  234 [ext4-rsv-conver]                0      0
+  278 [kworker/3:1H]                   0      0
+  306 [loop0]                          0      0
+  307 [loop1]                          0      0
+  311 [loop2]                          0      0
+  313 [loop3]                          0      0
+  315 [loop4]                          0      0
+  318 [loop5]                          0      0
+  344 [asus_wireless_w]                0      0
+  359 [irq/50-mei_me]                  0      0
+  396 [led_workqueue]                  0      0
+  399 [kmemstick]                      0      0
+  412 [cfg80211]                       0      0
+  492 [kworker/u9:1]                   0      0
+ 1525 [krfcommd]                       0      0
+ 3632 [kworker/3:2]                    0      0
+ 4843 [kworker/u8:1]                   0      0
+ 5452 [kworker/3:0]                    0      0
+ 5728 [kworker/0:1]                    0      0
+ 7698 [kworker/u8:0]                   0      0
+ 8189 [kworker/2:1]                    0      0
+ 9304 [kworker/1:0]                    0      0
+ 9913 [kworker/2:2]                    0      0
+10069 [kworker/3:3]                    0      0
+10345 [kworker/1:2]                    0      0
+10355 [kworker/2:0]                    0      0
+10356 [kworker/0:0]                    0      0
+10494 [kworker/3:1]                    0      0
+10705 [kworker/1:1]                    0      0
+10737 [kworker/0:2]                    0      0
